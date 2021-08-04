@@ -1,0 +1,12 @@
+.login-grid {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 25% 50% 25%;
+    height: 100vh;
+}
+
+.login-page {
+    background-color: teal;
+    grid-column: 2 / 3;
+    grid-row: 2 /3;
+}
