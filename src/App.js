@@ -1,9 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import Loading from './components/loading'
 
 function App() {
   return (
-    <h2>Hello World</h2>
+    
+<div><h2>Hello World</h2>
+<Loading/>
+</div>
+
   );
 }
 
