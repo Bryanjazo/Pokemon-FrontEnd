@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import { Router } from 'react-router-dom';
 
 function App() {
   return (
-    <h2>Hello World</h2>
+    <Router>
+    </Router>
   );
 }
 
