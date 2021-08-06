@@ -1,0 +1,26 @@
+div.pokedex-container li img {
+    height: 12vh;
+    padding: 10%;
+}
+
+div.pokedex-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    width: 90%;
+    color: grey;
+    list-style-type: none;
+    align-items: center;
+    padding-right: 3%;
+    margin:auto;
+}
+
+div.pokedex-container li {
+    width: 10vh;
+    justify-content: center;
+    text-align: center;
+    padding-top: 3%;
+    padding-right: 5%;
+    margin: auto;
+
+}
