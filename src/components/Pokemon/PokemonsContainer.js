@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pokmeon = () => {
+const PokemonsContainer = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const Pokmeon = () => {
     );
 }
 
-export default Pokmeon;
+export default PokemonsContainer;
