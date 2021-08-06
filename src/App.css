@@ -10,6 +10,8 @@ ul.pokedex {
     list-style-type: none;
 }
 
+
+
 ul.pokedex li img {
     height: 10vh;
 }

@@ -1,0 +1,18 @@
+ul.pokedex {
+    list-style-type: none;
+}
+
+div.pokedex-container li img {
+    height: 10vh;
+}
+
+div.pokedex-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    color: grey;
+}
+
+ul.pokedex li {
+    width: 25vh;
+}
