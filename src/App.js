@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Loading from './components/loading';
 import { LoginPage } from './components/loginComponent/logInPage';
 import Login from './Oauth/SignIn.js'
-import PokemonsContainer from './components/Pokemon/PokemonsContainer';
+import PokemonsContainer from './components/pokemon/PokemonsContainer';
 
 
 function App() {
