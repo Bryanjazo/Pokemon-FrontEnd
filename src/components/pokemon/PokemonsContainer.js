@@ -8,12 +8,14 @@ const PokemonsContainer = () => {
     const pokemon = useSelector(state => state.pokemonReducer.pokemon)
 
     useEffect(() => {
-        dispatch(getPokemon()) 
+        
+        if (pokemon.length === 0) dispatch(getPokemon()) 
     });
 return (
     pokemon.map(p => {
     return <Pokemon
         pokemon = {p}
+        key = {p.id}
         // name={p.name}
         // key={p.uid}
         // id={p.uid}
