@@ -10,12 +10,34 @@ export const LoginPage = () => {
     const [signUp, setSignUp] = useState(false)
 
     function handleSubmit(e) {
-        e.preventDefualt()
+        e.preventDefault()
+
+        if(email != '' && password != '') {
+            if(signUp) {
+                if(password === passwordTwo) {
+                    // Sign up
+                } else {
+                    // Error, passwords do not match
+                }
+            }  else {
+                signIn(email, password)
+            }
+        } else {
+            // Error, fields cant be empty
+        }
+
+
+
 
         if(signUp) {
             // Perform sign up functionality
         } else {
-            signIn(email, password)
+            if(email != '' && password != '') {
+                signIn(email, password)
+            } else {
+                // return error
+                console.log('error')
+            }
         }
     }
 
