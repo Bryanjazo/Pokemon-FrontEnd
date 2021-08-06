@@ -2,6 +2,7 @@ import React from 'react'
 import './login_page.css'
 
 export const LoginPage = () => {
+    const x = 'Hello'
     return (
         <div className='login-grid'>
         <section className='login-page'>
