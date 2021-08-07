@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import './login_page.css'
-import { signIn } from '../../actions/authentication';
+import { createUser, signIn } from '../../actions/authentication';
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -16,6 +16,7 @@ export const LoginPage = () => {
             if(signUp) {
                 if(password === passwordTwo) {
                     // Sign up
+                    createUser(email, password)
                 } else {
                     // Error, passwords do not match
                 }
@@ -24,20 +25,6 @@ export const LoginPage = () => {
             }
         } else {
             // Error, fields cant be empty
-        }
-
-
-
-
-        if(signUp) {
-            // Perform sign up functionality
-        } else {
-            if(email != '' && password != '') {
-                signIn(email, password)
-            } else {
-                // return error
-                console.log('error')
-            }
         }
     }
 
