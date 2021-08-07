@@ -60,24 +60,27 @@ const Pokemon = (props) => {
             padding: theme.spacing(1),
         },
     }))(MuiDialogActions);
+
+
     const handleClickOpen = () => {
-        setOpen(true);
+        setOpen(!open);
     };
     const handleClose = () => {
         console.log("hi")
-        setOpen(false);
+        setOpen(!open)
+        
     };
 
 
     return (
-        <li key={props.pokemon.uid} onClick={handleClickOpen}>
+        <li key={props.pokemon.uid} >
             <b>{props.pokemon.name}</b><br />
-            <img src={props.pokemon.front_image}></img><br />
+            <img src={props.pokemon.front_image} onClick={handleClickOpen}></img><br />
             {`Tier: ${props.pokemon.tier}`}
 
 
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                <DialogTitle id="customized-dialog-title" onClose={handleClose} onClick={handleClose}>
+                <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                     {props.pokemon.name}
                 </DialogTitle>
                 <DialogContent dividers>
