@@ -75,17 +75,30 @@ const Pokemon = (props) => {
     return (
         <li key={props.pokemon.uid} >
             <b>{props.pokemon.name}</b><br />
-            <img src={props.pokemon.front_image} onClick={handleClickOpen}></img><br />
+            <img src={props.pokemon.front_image} onClick={handleClickOpen}></img><br /><br/>
             {`Tier: ${props.pokemon.tier}`}
 
 
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    {props.pokemon.name}
+                    {`${props.pokemon.name}`}
                 </DialogTitle>
-                <DialogContent dividers>
-                    <Typography gutterBottom>
-                    <img src={props.pokemon.front_image}></img>
+                <DialogContent dividers >
+                    <Typography gutterBottom className="dialogue-box" >
+                    
+                    <img src={props.pokemon.front_image} className="dialogue-image"></img>
+                    <div className={`pokemon-dialogue-info`}>
+                    <h3>{props.pokemon.name}</h3>
+                    <p><b>Attack: {props.pokemon.attack}</b></p>             
+                    <p><b>Defense: {props.pokemon.defense}</b></p>
+                    <p><b>Special Attack: {props.pokemon.special_attack}</b></p>
+                    <p><b>Special Defense: {props.pokemon.special_defense}</b></p>
+                    <p><b>Speed: {props.pokemon.speed}</b></p>
+                    <select name={`pokemon-${props.pokemon.uid}-moves`}>
+                        {props.pokemon.moves.map((m) => <option value={m}>{m}</option> )}
+                    </select>
+                    <p>{props.pokemon.description}</p>
+                    </div>
                     </Typography>
                     <Typography gutterBottom>
 
