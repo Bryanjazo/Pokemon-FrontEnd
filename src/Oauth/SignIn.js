@@ -6,8 +6,8 @@ function Login(){
   const [password, setPassword] = useState('')
 
   const handleSubmit = (e) =>{
-
-    fetch('http://localHost:3000/sessions', {
+      e.preventDefault()
+    fetch('http://localHost:3000/users', {
     method: 'POST',
     credentials: "same-origin",
     headers: {

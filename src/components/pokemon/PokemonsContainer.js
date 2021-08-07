@@ -8,12 +8,12 @@ const PokemonsContainer = () => {
     const dispatch = useDispatch()
     const pokemon = useSelector(state => state.pokemonReducer.pokemon)
 
-    useEffect(() => { 
-        if (pokemon.length === 0) dispatch(getPokemon()) 
-    });
+    useEffect(() => {
+        if (pokemon.length === 0) dispatch(getPokemon())
+    },[]);
 
 return (
-    <div className="pokedex-container">  
+    <div className="pokedex-container">
     {pokemon.map(p => {
         return <Pokemon
             pokemon = {p}
@@ -23,7 +23,7 @@ return (
     }
     </div>
 )
-    
+
 }
 
 export default PokemonsContainer;
