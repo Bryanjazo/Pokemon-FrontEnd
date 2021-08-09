@@ -1,3 +1,5 @@
+
+
 export const getPokemon = () => {
     return (dispatch) => {
         fetch('http://localhost:8080/api/v1/pokemons')
