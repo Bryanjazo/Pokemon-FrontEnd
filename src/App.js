@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemon } from './actions/pokemon';
 import { getMoves } from './actions/moves';
-
+import Home from './components/Home/Home.js'
 
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
     <Router>
         <Route path='/Login' component={SignIn}/>
         <Route path="/SignUp" component={SignUp}/>
+        <Route path="/Home" component={Home}/>
         <Route exact path='/pokemon' component={PokemonsContainer}/>
     </Router>
   );
