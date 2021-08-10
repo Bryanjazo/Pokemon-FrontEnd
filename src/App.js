@@ -8,16 +8,19 @@ import PokemonsContainer from './components/pokemon/PokemonsContainer';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemon } from './actions/pokemon';
+import { getMoves } from './actions/moves';
 
 
 
 function App() {
 
   const pokemon = useSelector(state => state.pokemonReducer.pokemon)
+  const moves = useSelector(state => state.movesReducer.moves)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (pokemon.length === 0) dispatch(getPokemon())
+    if (moves.length === 0) dispatch(getMoves())
   }, []);
 
   return (
