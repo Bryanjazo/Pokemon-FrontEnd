@@ -1,10 +1,11 @@
 import {  InputLabel, makeStyles, MenuItem, Radio, RadioGroup, Select, TextField } from '@material-ui/core';
-import clsx from 'clsx';
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPokemon } from '../../actions/pokemon';
+import { assignMoves, getPokemon } from '../../actions/pokemon';
 import Pokemon from './Pokemon';
 import './pokemon.css'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 const PokemonsContainer = () => {
     const dispatch = useDispatch()
     const pokemon = useSelector(state => state.pokemonReducer.pokemon)
+    const moves = useSelector(state => state.movesReducer.moves)
     const [tier, setTier] = React.useState('');
     const [filteredPokemon, setFilteredPokemon] = React.useState([])
     const [pokemonName, setPokemonName] = React.useState("")
@@ -31,6 +33,7 @@ const PokemonsContainer = () => {
       useEffect(() => {
         if (filteredPokemon.length === 0 && tier == "" && pokemonName == ""){
          setFilteredPokemon(pokemon)
+
         }
         filteredSearch()
           return () => {
