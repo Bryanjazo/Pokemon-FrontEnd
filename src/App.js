@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemon } from './actions/pokemon';
 import Home from './components/Home/Home.js'
+import BattlePage from './components/battle/BattlePage';
 
 
 function App() {
