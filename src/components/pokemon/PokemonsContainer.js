@@ -30,29 +30,26 @@ const PokemonsContainer = () => {
       };
 
       useEffect(() => {
-        if (filteredPokemon.length === 0 && tier == "" && pokemonName == "") setFilteredPokemon(pokemon)
+        if (filteredPokemon.length === 0 && tier == "" && pokemonName == ""){
+         setFilteredPokemon(pokemon)
+        }
+        filteredSearch()
           return () => {
 
           };
-      }, [pokemon]);
-    //   useEffect(() => {
-    //    setFilteredPokemon(pokemon)
-    //   }, [pokemon]);
+      }, [pokemon, tier, pokemonName]);
 
-    const handleNameChange = (event) => {
+    const handleNameChange = async (event) => {
         setPokemonName(event.target.value)
-        console.log(pokemonName)
-        filteredSearch()
+        
     }
 
     const filteredSearch = () => {
-        if (pokemonName != ""){
-            setFilteredPokemon(pokemon.filter((pokemon) => pokemon.name.includes(pokemonName)))
-            console.log(pokemonName)
+        if(tier){
+            setFilteredPokemon(pokemon.filter((pokemon) => pokemon.tier === tier && pokemon.name.toLowerCase().includes(pokemonName.toLowerCase())))
         } else {
             setFilteredPokemon(pokemon)
         }
-        
     }
 
 
@@ -60,8 +57,8 @@ const PokemonsContainer = () => {
 return (
     <div className="pokemon-page">
     <form className="pokedex-search-form" noValidate autoComplete="off">
-    <TextField id="standard-basic" label="Pokemon" onChange={(event) => setPokemonName(event.target.value)} />
-    <InputLabel id="demo-simple-select-label">Tier</InputLabel>
+    <TextField id="standard-basic" label="Pokemon" value={pokemonName} onChange={handleNameChange} />
+    <InputLabel id="demo-simple-select-label" >Tier</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
