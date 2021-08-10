@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemon } from './actions/pokemon';
 import Home from './components/Home/Home.js'
-
+import BattlePage from './components/battle/BattlePage';
 
 
 function App() {
@@ -30,9 +30,9 @@ function App() {
         <Route path="/SignUp" component={SignUp}/>
         <Route path="/Home" component={Home}/>
         <Route exact path='/pokemon' component={PokemonsContainer}/>
+        <Route exact path="/battle" component={BattlePage}></Route>
     </Router>
   );
 }
- 
 
 export default App;
