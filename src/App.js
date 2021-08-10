@@ -2,7 +2,8 @@
 import './App.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Loading from './components/loading';
-import { LoginPage } from './components/loginComponent/logInPage';
+import  SignIn from './components/loginComponent/logInPage';
+import SignUp from './components/loginComponent/SignUp';
 import Login from './Oauth/SignIn.js'
 import PokemonsContainer from './components/pokemon/PokemonsContainer';
 import { useEffect } from 'react';
@@ -22,8 +23,8 @@ function App() {
 
   return (
     <Router>
-      <Route exact path='/' component={LoginPage}/>
-        <Route exact path='/login' component={Login}/>
+        <Route path='/Login' component={SignIn}/>
+        <Route path="/SignUp" component={SignUp}/>
         <Route exact path='/pokemon' component={PokemonsContainer}/>
     </Router>
   );

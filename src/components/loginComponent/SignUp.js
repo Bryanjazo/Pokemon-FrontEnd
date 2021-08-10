@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignUp() {
   const classes = useStyles();
   const dispatch = useDispatch()
   const history = useHistory();
@@ -60,7 +60,7 @@ export default function SignIn() {
     e.preventDefault()
    // Send request to users to API
    console.log('signed up')
-   fetch('http://localhost:8080/api/v1/sessions', {
+   fetch('http://localhost:8080/api/v1/users', {
      method: 'POST',
      headers: {
        'Content-Type': 'application/json',
@@ -74,10 +74,12 @@ export default function SignIn() {
    .then(resp => resp.json())
    .then(function(data){
      console.log(data.id)
+
      if(data){
+       console.log(data)
        // console.log(data.jwt, "tokennnn")
         localStorage.setItem("token", data.uid)
-          console.log(localStorage.token)
+        console.log(localStorage.token)
         // localStorage.setItem("token", data.jwt)
 
         // settingUserSignUp()
@@ -94,7 +96,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Sign Up
         </Typography>
         <form onSubmit={handleSignIn} className={classes.form} noValidate>
           <TextField
@@ -143,8 +145,8 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/SignUp" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link to="/Login" variant="body2">
+                {"Already Have An Account? Login"}
               </Link>
             </Grid>
           </Grid>
