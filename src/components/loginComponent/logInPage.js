@@ -15,36 +15,52 @@ export const LoginPage = () => {
         if(email != '' && password != '') {
             if(signUp) {
                 if(password === passwordTwo) {
-                    // Sign up
+                  fetch('http://localHost:3000/users', {
+                  method: 'POST',
+                  credentials: "same-origin",
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                  },
+                  body: JSON.stringify({
+                    email: email,
+                    password: password
+                   })
+                })
+                .then(resp => resp.json())
+                .then(function(data){
+                  console.log(data)
+                  localStorage.setItem("token", data.idToken)
+                })
                 } else {
-                    // Error, passwords do not match
+                  alert("Error Password Does Not Match")
                 }
             }  else {
                 signIn(email, password)
             }
         } else {
-            // Error, fields cant be empty
+            alert("Field Cant Be Empty")
+        }
         }
 
 
 
-
-        if(signUp) {
-            // Perform sign up functionality
-        } else {
-            if(email != '' && password != '') {
-                signIn(email, password)
-            } else {
-                // return error
-                console.log('error')
-            }
-        }
-    }
+        // if(signUp) {
+        //     // Perform sign up functionality
+        // } else {
+        //     if(email != '' && password != '') {
+        //         signIn(email, password)
+        //     } else {
+        //         // return error
+        //         console.log('error')
+        //     }
+        // }
+    
 
     function passwordReEntry() {
         return (
             <>
-                <label>Re-enter password:</label>
+                <label className="login-label">Re-enter password:</label>
                 <input className='main' type="Password" onChange={e => setPasswordTwo(e.target.value)}/>
             </>
         )
@@ -55,9 +71,9 @@ export const LoginPage = () => {
         <section className='login-page'>
             <h1>Pokemon Battle Royal</h1>
             <form onSubmit={e => handleSubmit(e)}>
-                <label>Email:</label>
+                <label className="login-label">Email:</label>
                 <input className='main' type='Text' onChange={e => setEmail(e.target.value)}/>
-                <label>Password:</label>
+                <label className="login-label">Password:</label>
                 <input className='main' type='Password' onChange={e => setPassword(e.target.value)}/>
                 {signUp && passwordReEntry()}
                 <div className='form-buttons'>
