@@ -75,7 +75,7 @@ export default function SignUp() {
    .then(function(data){
      console.log(data.id)
 
-     if(data){
+     if(data.uid){
        console.log(data)
        // console.log(data.jwt, "tokennnn")
         localStorage.setItem("token", data.uid)
@@ -84,6 +84,8 @@ export default function SignUp() {
 
         // settingUserSignUp()
         history.push('/Home')
+     }else{
+       alert("Email Already Exists")
      }
    })
   }
