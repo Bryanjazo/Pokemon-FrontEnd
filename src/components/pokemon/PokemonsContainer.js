@@ -45,10 +45,15 @@ const PokemonsContainer = () => {
     }
 
     const filteredSearch = () => {
-        if(tier){
-            setFilteredPokemon(pokemon.filter((pokemon) => pokemon.tier === tier && pokemon.name.toLowerCase().includes(pokemonName.toLowerCase())))
+        if (pokemonName){
+            setFilteredPokemon(pokemon.filter((pokemon) => pokemon.name.toLowerCase().includes(pokemonName.toLowerCase())))
+            console.log(pokemonName)
         } else {
             setFilteredPokemon(pokemon)
+        }
+        
+        if(tier){
+            setFilteredPokemon(pokemon.filter((pokemon) => pokemon.tier === tier && pokemon.name.toLowerCase().includes(pokemonName.toLowerCase())))
         }
     }
 
