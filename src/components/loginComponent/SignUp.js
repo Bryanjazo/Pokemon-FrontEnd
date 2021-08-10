@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 
 
 function Copyright() {
@@ -53,8 +53,9 @@ export default function SignUp() {
   const dispatch = useDispatch()
   const history = useHistory();
   const [email, setEmail] = useState('')
-
+  const current_user = useSelector(state => state.userReducer.details)
   const [password, setPassword] = useState('')
+  console.log(current_user)
 
   const handleSignIn = (e) => {
     e.preventDefault()
@@ -81,7 +82,10 @@ export default function SignUp() {
         localStorage.setItem("token", data.uid)
         console.log(localStorage.token)
         // localStorage.setItem("token", data.jwt)
-
+        dispatch({
+          type: "GET_USER_DETAILS",
+          payload: data
+        })
         // settingUserSignUp()
         history.push('/Home')
      }else{

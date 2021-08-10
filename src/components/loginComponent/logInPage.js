@@ -80,7 +80,10 @@ export default function SignIn() {
         localStorage.setItem("token", data.uid)
           console.log(localStorage.token)
         // localStorage.setItem("token", data.jwt)
-
+        dispatch({
+          type: "GET_USER_DETAILS",
+          payload: data
+        })
         // settingUserSignUp()
         history.push('/Home')
      }else{

@@ -4,12 +4,12 @@ const initialState = {
 
 const movesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "GET_MOVES": 
+        case "GET_MOVES":
             return {
                 ...state,
             moves: [...action.payload]
-            }
-        default: 
+          }
+        default:
             return state
     }
 }
