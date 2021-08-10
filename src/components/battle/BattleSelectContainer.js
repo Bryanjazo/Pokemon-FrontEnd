@@ -11,7 +11,8 @@ const BattleSelectContainer = () => {
         <h1>Select Team</h1>
         {battlePokemon.map(p => {
             return (
-                <div></div>
+                <div>
+                </div>
             )
         })}
         <div className="battle-select-pokemon">
