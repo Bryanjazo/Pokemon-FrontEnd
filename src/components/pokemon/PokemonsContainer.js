@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 const PokemonsContainer = () => {
     const dispatch = useDispatch()
     const pokemon = useSelector(state => state.pokemonReducer.pokemon)
-
     const [tier, setTier] = React.useState('');
     const [filteredPokemon, setFilteredPokemon] = React.useState([])
     const [pokemonName, setPokemonName] = React.useState("")
@@ -62,13 +61,22 @@ const PokemonsContainer = () => {
 return (
     <div className="pokemon-page">
     <form className="pokedex-search-form" noValidate autoComplete="off">
+
+    <TextField id="standard-basic" label="Pokemon" onChange={(event) => setPokemonName(event.target.value)} />
+    <InputLabel id="demo-simple-select-label">Tier</InputLabel>
+
     <TextField id="standard-basic" label="Pokemon" value={pokemonName} onChange={handleNameChange} />
     <InputLabel id="demo-simple-select-label" >Tier</InputLabel>
+
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={tier}
+
+          onChange={(e) => setTier(e.target.value)}
+
           onChange={handleChange}
+
         >
           <MenuItem value={""}>All Tiers</MenuItem>
           <MenuItem value={1}>1</MenuItem>
@@ -77,25 +85,27 @@ return (
         </Select>
 </form>
 
+
+<div className="pokedex-container">
+
 <div className="pokedex-container"> 
+
     {
         filteredPokemon.map(p => {
         return <Pokemon
             pokemon = {p}
             key = {p.id}
-            
+
         />
     })
     }
     </div>
     </div>
 )
-    
+
 }
 
 export default PokemonsContainer;
 
 
 
-// if pokemon name is present filtered pokemon = pokemon name 
-// if tier 

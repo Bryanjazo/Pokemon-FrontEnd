@@ -15,31 +15,47 @@ export const LoginPage = () => {
         if(email != '' && password != '') {
             if(signUp) {
                 if(password === passwordTwo) {
-                    // Sign up
+                  fetch('http://localHost:3000/users', {
+                  method: 'POST',
+                  credentials: "same-origin",
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                  },
+                  body: JSON.stringify({
+                    email: email,
+                    password: password
+                   })
+                })
+                .then(resp => resp.json())
+                .then(function(data){
+                  console.log(data)
+                  localStorage.setItem("token", data.idToken)
+                })
                 } else {
-                    // Error, passwords do not match
+                  alert("Error Password Does Not Match")
                 }
             }  else {
                 signIn(email, password)
             }
         } else {
-            // Error, fields cant be empty
+            alert("Field Cant Be Empty")
+        }
         }
 
 
 
-
-        if(signUp) {
-            // Perform sign up functionality
-        } else {
-            if(email != '' && password != '') {
-                signIn(email, password)
-            } else {
-                // return error
-                console.log('error')
-            }
-        }
-    }
+        // if(signUp) {
+        //     // Perform sign up functionality
+        // } else {
+        //     if(email != '' && password != '') {
+        //         signIn(email, password)
+        //     } else {
+        //         // return error
+        //         console.log('error')
+        //     }
+        // }
+    
 
     function passwordReEntry() {
         return (
