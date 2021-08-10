@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useDispatch} from 'react-redux'
-
+import './login_page.css'
 
 function Copyright() {
   return (
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
+
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
@@ -81,13 +82,15 @@ export default function SignIn() {
         // localStorage.setItem("token", data.jwt)
 
         // settingUserSignUp()
-        history.push('/')
+        history.push('/pokemon')
      }
    })
   }
   console.log(email)
   return (
+
     <Container component="main" maxWidth="xs">
+      <div className="LogInContainer">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -153,6 +156,8 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
+        </div>
     </Container>
+
   );
 }

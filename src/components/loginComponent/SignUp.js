@@ -83,7 +83,7 @@ export default function SignUp() {
         // localStorage.setItem("token", data.jwt)
 
         // settingUserSignUp()
-        history.push('/')
+        history.push('/Home')
      }
    })
   }
