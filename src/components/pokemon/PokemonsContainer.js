@@ -65,8 +65,7 @@ return (
     <TextField id="standard-basic" label="Pokemon" onChange={(event) => setPokemonName(event.target.value)} />
     <InputLabel id="demo-simple-select-label">Tier</InputLabel>
 
-    <TextField id="standard-basic" label="Pokemon" value={pokemonName} onChange={handleNameChange} />
-    <InputLabel id="demo-simple-select-label" >Tier</InputLabel>
+
 
         <Select
           labelId="demo-simple-select-label"
@@ -87,8 +86,6 @@ return (
 
 
 <div className="pokedex-container">
-
-<div className="pokedex-container"> 
 
     {
         filteredPokemon.map(p => {
