@@ -75,14 +75,16 @@ export default function SignIn() {
    .then(resp => resp.json())
    .then(function(data){
      console.log(data.id)
-     if(data){
+     if(data.uid){
        // console.log(data.jwt, "tokennnn")
         localStorage.setItem("token", data.uid)
           console.log(localStorage.token)
         // localStorage.setItem("token", data.jwt)
 
         // settingUserSignUp()
-        history.push('/pokemon')
+        history.push('/Home')
+     }else{
+       alert("Wrong Email Or Password")
      }
    })
   }

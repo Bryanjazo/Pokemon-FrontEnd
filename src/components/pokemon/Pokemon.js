@@ -15,7 +15,6 @@ const Pokemon = (props) => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        console.log(open)
         return () => {
             console.log(open)
         };
@@ -62,7 +61,7 @@ const Pokemon = (props) => {
             margin: 0,
             padding: theme.spacing(1)
         },
-    
+
     }))(MuiDialogActions);
 
 
@@ -72,7 +71,7 @@ const Pokemon = (props) => {
     const handleClose = () => {
         console.log("hi")
         setOpen(!open)
-        
+
     };
 
 
@@ -89,15 +88,15 @@ const Pokemon = (props) => {
                 </DialogTitle>
                 <DialogContent dividers >
                     <Typography gutterBottom className="dialogue-box" >
-                    
+
                     <img src={props.pokemon.front_image} className="dialogue-image"></img>
                     </Typography>
                     <Typography gutterBottom>
                     <div className={`pokemon-dialogue-info`}>
                     <h3>{props.pokemon.name}</h3>
-                    <h3>{`Pokedex #${props.pokemon.uid}`}</h3> 
+                    <h3>{`Pokedex #${props.pokemon.uid}`}</h3>
                     <p className="pokemon-description">{props.pokemon.description}</p>
-                    <p className="pokemon-stat">Attack: {props.pokemon.attack}</p>             
+                    <p className="pokemon-stat">Attack: {props.pokemon.attack}</p>
                     <p className="pokemon-stat">Defense: {props.pokemon.defense}</p>
                     <p className="pokemon-stat">Special Attack: {props.pokemon.special_attack}</p>
                     <p className="pokemon-stat">Special Defense: {props.pokemon.special_defense}</p>
@@ -124,4 +123,3 @@ const Pokemon = (props) => {
 }
 
 export default Pokemon;
-
