@@ -8,11 +8,11 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-backgroundImage: "url(" + "../.././img/battle-background.jpeg" + ")",
+/* backgroundImage: "url(" + "../.././img/battle-background.jpeg" + ")",
 marginTop: theme.spacing(8),
 display: 'flex',
 flexDirection: 'column',
-alignItems: 'center',
+alignItems: 'center', */
 
 .LogInContainer{
   background-image: url('../.././img/battle-background.jpeg');
