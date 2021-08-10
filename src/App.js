@@ -9,8 +9,8 @@ import PokemonsContainer from './components/pokemon/PokemonsContainer';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemon } from './actions/pokemon';
-import { getMoves } from './actions/moves';
 import Home from './components/Home/Home.js'
+
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     if (pokemon.length === 0) dispatch(getPokemon())
-    if (moves.length === 0) dispatch(getMoves())
+
   }, []);
 
   return (
@@ -33,5 +33,6 @@ function App() {
     </Router>
   );
 }
+ 
 
 export default App;

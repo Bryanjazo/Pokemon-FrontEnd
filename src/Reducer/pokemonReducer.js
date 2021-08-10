@@ -9,9 +9,17 @@ const pokemonReducer = (state = initialState, action) => {
                 ...state,
             pokemon: [...action.payload]
             }
+            case "ADD_MOVES":
+                return {
+                    ...state,
+                    pokemon: [...state.pokemon, action.payload]
+                }
+            
         default: 
             return state
     }
 }
+
+
 
 export default pokemonReducer
