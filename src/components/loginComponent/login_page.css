@@ -31,7 +31,7 @@ form input, form label {
     border-radius: 5px;
 }
 
-label {
+label.login-label {
     font-size: medium;
     color: #65FDFE;
     font-weight: bold;

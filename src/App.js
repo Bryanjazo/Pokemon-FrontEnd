@@ -11,10 +11,14 @@ import { getPokemon } from './actions/pokemon';
 
 
 
-
 function App() {
 
   const pokemon = useSelector(state => state.pokemonReducer.pokemon)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (pokemon.length === 0) dispatch(getPokemon())
+  }, []);
 
   return (
     <Router>

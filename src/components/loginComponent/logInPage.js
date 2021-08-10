@@ -44,7 +44,7 @@ export const LoginPage = () => {
     function passwordReEntry() {
         return (
             <>
-                <label>Re-enter password:</label>
+                <label className="login-label">Re-enter password:</label>
                 <input className='main' type="Password" onChange={e => setPasswordTwo(e.target.value)}/>
             </>
         )
@@ -55,9 +55,9 @@ export const LoginPage = () => {
         <section className='login-page'>
             <h1>Pokemon Battle Royal</h1>
             <form onSubmit={e => handleSubmit(e)}>
-                <label>Email:</label>
+                <label className="login-label">Email:</label>
                 <input className='main' type='Text' onChange={e => setEmail(e.target.value)}/>
-                <label>Password:</label>
+                <label className="login-label">Password:</label>
                 <input className='main' type='Password' onChange={e => setPassword(e.target.value)}/>
                 {signUp && passwordReEntry()}
                 <div className='form-buttons'>
