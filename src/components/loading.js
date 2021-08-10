@@ -5,8 +5,8 @@ function Loading(){
 
 
     return (
-        <div className="loading">
-          
+        <div class="loading">
+          <img src="./img/pokeball_background.png" alt='pokeball'></img>
         </div>
     )
 }
