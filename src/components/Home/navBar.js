@@ -2,11 +2,14 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Link from '@material-ui/core/Link'
+import {LogOut} from '../../actions/authentication.js'
+import {useDispatch,useSelector} from 'react-redux'
+import {useHistory,Link} from 'react-router-dom'
 
 const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const dispatch = useDispatch()
+  const history = useHistory()
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -14,6 +17,10 @@ const NavBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleLogOut = () => {
+    dispatch(LogOut())
+  }
+
 
     return (
         <div className="nav-bar">
@@ -28,19 +35,19 @@ const NavBar = () => {
                 onClose={handleClose}
             >
             <MenuItem onClick={handleClose}>
-                <Link href="/pokemon">
+                <Link to="/pokemon">
                     Pokedex
                 </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-                <Link href="/battle">
+                <Link to="/battle">
                     Battle!
                 </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-                <Link href="/">
-                    Logout
-                </Link>
+              <Link to="/Login">
+                    <button onClick={handleLogOut}>Log Out</button>
+              </Link>
             </MenuItem>
             </Menu>
         </div>

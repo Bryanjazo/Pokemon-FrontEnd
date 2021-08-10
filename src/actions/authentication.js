@@ -1,3 +1,5 @@
+
+
 export const signIn = (email, password) => {
   fetch('http://localHost:8080/api/v1/sessions', {
     method: 'POST',
@@ -37,4 +39,13 @@ export const signUp = (email, password) => {
     localStorage.setItem("token", data.idToken)
     console.log(data)
   })
+}
+
+export const LogOut = () => {
+  return(dispatch) => {
+    localStorage.setItem('token', '')
+    dispatch({
+      type: 'CLEAR_USER_DETAIL'
+    })
+      }
 }
