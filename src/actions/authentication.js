@@ -1,17 +1,40 @@
 export const signIn = (email, password) => {
-    const config = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    }
+  fetch('http://localHost:8080/api/v1/sessions', {
+    method: 'POST',
+    credentials: "same-origin",
+    headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    },
+  body: JSON.stringify({
+    email: email,
+    password: password
+    })
+ })
+  .then(resp => resp.json())
+  .then(function(data){
+    console.log(data)
+    localStorage.setItem("token", data.uid)
+  })
+}
 
-    fetch('http://localHost:3000/sessions', config)
-    .then(resp => resp.json())
-    .then(resp => console.log(resp))
+export const signUp = (email, password) => {
+  fetch('http://localHost:8080/api/v1/sessions', {
+    method: 'POST',
+    credentials: "same-origin",
+    headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    },
+  body: JSON.stringify({
+    email: email,
+    password: password
+    })
+ })
+  .then(resp => resp.json())
+  .then(function(data){
+  console.log(data)
+    localStorage.setItem("token", data.idToken)
+    console.log(data)
+  })
 }
