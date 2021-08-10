@@ -8,7 +8,8 @@ import PokemonsContainer from './components/pokemon/PokemonsContainer';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemon } from './actions/pokemon';
-
+import BattlePage from './components/battle/BattlePage';
+import BattleSelectContainer from './components/battle/BattleSelectContainer';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route exact path='/' component={LoginPage}/>
         <Route exact path='/login' component={Login}/>
         <Route exact path='/pokemon' component={PokemonsContainer}/>
+        <Route exact path="/battle" component={BattlePage}></Route>
     </Router>
   );
 }

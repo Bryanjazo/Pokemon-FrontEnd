@@ -1,0 +1,44 @@
+div.battle-page {
+    background-image: url("../../img/pokemon-background-battle-1.png");
+    height: 100vh;
+    background-size: 100vw 100vh;
+}
+
+div.battle-menu {
+    width: 6%;
+    height: 100%;
+}
+
+div.battle-select-pokemon {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    width: 90%;
+    color: grey;
+    list-style-type: none;
+    align-items: center;
+    padding-right: 3%;
+    margin:auto;
+}
+
+ul.user-pokemon {
+    list-style: none;
+    text-align: center;
+}
+
+ul.user-pokemon {
+    width: 10vh;
+    justify-content: center;
+    text-align: center;
+    padding-top: 3%;
+    padding-right: 5%;
+    margin: auto;
+}
+
+ul.user-pokemon li:first-child {
+    padding-left: 10px;
+}
+
+ul.user-pokemon li:nth-child(2) {
+    padding-left: 5px;
+}
