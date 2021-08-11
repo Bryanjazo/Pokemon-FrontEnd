@@ -12,12 +12,3 @@ export const getPokemon = () => {
         })
     }
 }
-
-export const assignMoves = (pokemon) => {
-    return (dispatch) => {
-        dispatch({
-            type: "ADD_MOVES",
-            payload: pokemon
-        })
-    }
-}

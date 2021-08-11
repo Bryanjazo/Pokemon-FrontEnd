@@ -17,6 +17,7 @@ export const signIn = (email, password) => {
   .then(function(data){
     console.log(data)
     localStorage.setItem("token", data.uid)
+    localStorage.setItem("user_id", data.id)
   })
 }
 

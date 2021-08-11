@@ -9,10 +9,22 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { addPokemonToUser } from '../../actions/userpokemon';
+import { useSelector } from 'react-redux';
+
+
 
 const Pokemon = (props) => {
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.userReducer.details)
+    
+
+
+    const handlePurchase = () => {
+        dispatch(addPokemonToUser(parseInt(user.id), props.pokemon.id))
+      }
 
     useEffect(() => {
         return () => {
@@ -112,7 +124,7 @@ const Pokemon = (props) => {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="primary">
+                    <Button autoFocus onClick={() => handlePurchase()} color="primary">
                         Buy Pokemon
           </Button>
                 </DialogActions>
