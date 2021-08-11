@@ -19,7 +19,7 @@ const BattleSelectContainer = () => {
         return () => {
            
         };
-    }, []);
+    }, [battlePokemon]);
 
     
     const handleBattleClick = (event) => {
@@ -36,12 +36,13 @@ const BattleSelectContainer = () => {
     const handleClick = (event) => {
         if (battlePokemon[5].id === undefined) {
             event.target.style.display = "none"
-            let selected = pokemon.find(({id}) => id === parseInt(event.target.id))
+            let selected = userPokemon.find((p) => p.id === parseInt(event.target.id))
             battlePokemon[count] = selected
             setCount(count + 1)
         }
     }
     if (battleTime === true) {
+
         return (<BattlePage userBattleTeam={battlePokemon}/>)
     } else {
         debugger
@@ -51,10 +52,10 @@ const BattleSelectContainer = () => {
         {battlePokemon[0].id !== undefined ? <div className="battle-button"><button onClick={handleBattleClick}>BATTLE!</button></div> : null}
         <div className="battle-select-pokemon">
         {battlePokemon.map(p => {
-            if (p.front_image) {
+            if (p.pokemon && p.pokemon.front_image) {
             return (
                 <div>
-                    <img src={p.front_image} style={{maxHeight: "96px", maxWidth: "96px"}}></img>
+                    <img src={p.pokemon.front_image} style={{maxHeight: "96px", maxWidth: "96px"}}></img>
                 </div>
             )
             } else {
@@ -74,8 +75,19 @@ const BattleSelectContainer = () => {
            <ul className="user-pokemon">
             <li><button id={p.id} onClick={handleClick}>Select</button><br></br></li>
             <UserPokemon
-            pokemon = {p.pokemon}
+            name = {p.pokemon.name}
+            id = {p.id}
+            frontImage = {p.pokemon.front_image}
+            uid = {p.pokemon.uid}
+            attack = {p.pokemon.attack}
+            defense = {p.pokemon.defense}
+            specialAttack = {p.pokemon.special_attack}
+            specialDefense = {p.pokemon.special_defense}
+            speed = {p.pokemon.speed}
+            tier = {p.pokemon.tier}
             key = {p.pokemon.id}
+            description = {p.pokemon.description}
+            types = {p.pokemon.types}
         />
         </ul>
         )
