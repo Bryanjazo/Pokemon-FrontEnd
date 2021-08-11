@@ -42,3 +42,43 @@ ul.user-pokemon li:first-child {
 ul.user-pokemon li:nth-child(2) {
     padding-left: 5px;
 }
+
+div.battle-button {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+div.battle-button button {
+    font-size: large;
+    color: #5E92DE;
+    font-weight: bold;
+}
+
+div.user-battle-team {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: column;
+    width: 90%;
+    color: grey;
+    align-items:flex-start;
+    margin:auto;
+    bottom: 69vh;
+    position: relative;
+}
+
+div.user-battle-team img {
+    max-height: 70px;
+    max-width: 70px;
+}
+
+div.selected-pokemon {
+    bottom: 280px;
+    position: relative;
+    text-align: center;
+}
+
+div.selected-pokemon img {
+    width: 300px;
+    height: 300px;
+    padding-right: 300px;
+}
