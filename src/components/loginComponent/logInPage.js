@@ -1,13 +1,17 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './login_page.css'
 import { signIn } from '../../actions/authentication';
+import {Loading} from '../../Loading.js'
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordTwo, setPasswordTwo] = useState('')
     const [signUp, setSignUp] = useState(false)
+    const [loading, setLoading] = useState(true)
+
+
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -66,7 +70,13 @@ export const LoginPage = () => {
         )
     }
 
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 6000)
+    }, [])
+
     return (
+        <>
+        {loading === false? (
         <div className='login-grid'>
         <section className='login-page'>
             <h1>Pokemon Battle Royal</h1>
@@ -84,5 +94,9 @@ export const LoginPage = () => {
             </form>
         </section>
         </div>
+        ): (
+            <Loading/>
+        )}
+        </>
     )
 }
