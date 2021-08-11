@@ -12,16 +12,19 @@ import { getPokemon } from './actions/pokemon';
 import Home from './components/Home/Home.js'
 import BattlePage from './components/battle/BattlePage';
 import BattleSelectContainer from './components/battle/BattleSelectContainer';
+import { getUserPokemon } from './actions/userpokemon';
 
 
 function App() {
 
   const pokemon = useSelector(state => state.pokemonReducer.pokemon)
   const moves = useSelector(state => state.movesReducer.moves)
+  const user = useSelector(state => state.userReducer.details)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (pokemon.length === 0) dispatch(getPokemon())
+    if(user) dispatch(getUserPokemon())
 
   }, []);
 

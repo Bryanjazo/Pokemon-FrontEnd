@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 
 
 
-const Pokemon = (props) => {
+const UserPokemon = (props) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(state => state.userReducer.details)
@@ -114,9 +114,6 @@ const Pokemon = (props) => {
                     <p className="pokemon-stat">Special Defense: {props.pokemon.special_defense}</p>
                     <p className="pokemon-stat">Speed: {props.pokemon.speed}</p>
                     <p><b>{props.pokemon.name}'s Moves</b></p>
-                    <ul className={`pokemon-moves`}>
-                        {props.pokemon.moves.map((m) => <li><b>{m.name}</b>{` Power: ${m.power} Type: ${m.pokemon_type}`}</li> )}
-                    </ul>
                     </div>
                     </Typography>
                     <Typography gutterBottom>
@@ -134,4 +131,4 @@ const Pokemon = (props) => {
     );
 }
 
-export default Pokemon;
+export default UserPokemon;
