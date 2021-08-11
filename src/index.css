@@ -28,3 +28,11 @@ body {
 h1 {
   font-size: 40px;
 }
+
+
+.logo img{
+
+  width: 100%;
+  
+  vertical-align: middle; 
+}

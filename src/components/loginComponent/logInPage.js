@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import './login_page.css'
 import { signIn } from '../../actions/authentication';
-import {Loading} from '../../Loading.js'
+import Loading from '../Loading'
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -79,7 +79,7 @@ export const LoginPage = () => {
         {loading === false? (
         <div className='login-grid'>
         <section className='login-page'>
-            <h1>Pokemon Battle Royal</h1>
+        <img className="title" src="https://fontmeme.com/permalink/210811/4b098e9a3b8e7681b9ab7e385125e497.png" alt="pokemon-font" border="0"/>
             <form onSubmit={e => handleSubmit(e)}>
                 <label className="login-label">Email:</label>
                 <input className='main' type='Text' onChange={e => setEmail(e.target.value)}/>
