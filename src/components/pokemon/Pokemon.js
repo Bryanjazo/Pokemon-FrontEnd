@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
-import { addPokemonToUser } from '../../actions/userpokemon';
+import { addPokemonToUser, subtractTokensFromUser } from '../../actions/userpokemon';
 import { useSelector } from 'react-redux';
 
 
@@ -22,9 +22,19 @@ const Pokemon = (props) => {
     
 
 
+    const subtractTokens = () => {
+        if (props.pokemon.tier === 1) return user.tokens - 20
+        if (props.pokemon.tier === 2) return user.tokens - 50
+        if (props.pokemon.tier === 3) return user.tokens - 100
+    }
+
+
     const handlePurchase = () => {
         dispatch(addPokemonToUser(parseInt(user.id), props.pokemon.id))
+        dispatch(subtractTokensFromUser(subtractTokens()))
       }
+
+    
 
     useEffect(() => {
         return () => {
