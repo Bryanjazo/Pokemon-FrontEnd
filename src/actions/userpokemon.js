@@ -6,7 +6,7 @@ export const addPokemonToUser = (user_id, pokemon_id) => {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
             },
-            body: JSON.stringify({ pokemon_id })
+            body: JSON.stringify({user_id, pokemon_id})
         })
         .then(resp => console.log(resp.json()))
         
@@ -17,6 +17,15 @@ export const addPokemonToUser = (user_id, pokemon_id) => {
 
     // Then set local state of user pokemons to the object that we get back
     
+}
+
+export const subtractTokensFromUser = cost => {
+    return (dispatch) => {
+        dispatch({
+            type: "SUBTRACT_TOKENS",
+            payload: cost
+        })
+    }
 }
 
 export const getUserPokemon = user_id => {

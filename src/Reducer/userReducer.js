@@ -29,6 +29,14 @@ const userReducer = (state = userDetails, action) =>{
             ...state,
             userPokemon: [...state.pokemon, action.payload]
           }
+          case "SUBTRACT_TOKENS":
+            return {
+              ...state,
+              details: {
+                ...state.details,
+                tokens: action.payload
+              }
+            }
 
       default:
           return state
