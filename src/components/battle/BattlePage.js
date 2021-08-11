@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import BattleMenu from './BattleMenu';
+import MovesAlert from './MovesAlert';
 import './battle.css'
 
 const BattlePage = (props) => {
+
+    const renderMoveFromStringToObject = (array, p) =>{
+        for(let i in array){
+            let move = p.moves.find((m) => m.name === array[i])
+            array[i] = move
+        }
+    
+    }
     const [selectedPokemon, setSelectedPokemon] = useState({})
+
+    useEffect(() => {
+        return () => { 
+        };
+    }, [selectedPokemon]);
 
     const handleImageClick = (event) => {
         event.preventDefault()
@@ -19,13 +33,15 @@ const BattlePage = (props) => {
             <h3>My Team</h3>
                 {props.userBattleTeam.map((p, index) => {
                     if (selectedPokemon.id === p.id) return (<p></p>)
-                    else return (
-                        <img id={index} src={p.front_image} onClick={handleImageClick}/>
+                    else if (p.pokemon) {return (
+                        <img id={index} src={p.pokemon.front_image} onClick={handleImageClick}/>
                     )
+                    }
                 })}
             </div>
         </div>
-        {selectedPokemon.id ? <div className="selected-pokemon"><img src={selectedPokemon.back_image}></img></div> : null}
+        {selectedPokemon.pokemon ? <MovesAlert moves={selectedPokemon}/> : null}
+        {/* {selectedPokemon.id ? <div className="selected-pokemon"><img src={selectedPokemon.pokemon.back_image}></img></div> : null} */}
         </>
     );
 }

@@ -17,7 +17,6 @@ const BattleSelectContainer = () => {
     useEffect(() => {
         dispatch(getUserPokemon(user.id))
         return () => {
-           
         };
     }, [battlePokemon]);
 
@@ -45,7 +44,6 @@ const BattleSelectContainer = () => {
 
         return (<BattlePage userBattleTeam={battlePokemon}/>)
     } else {
-        debugger
     return (
         <>
         <h1>Select Team</h1><br></br>
