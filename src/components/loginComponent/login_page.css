@@ -1,0 +1,88 @@
+.login-grid {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 5%;
+    height: 100vh;
+    background-image: url('../.././img/battle-background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+h1 {
+    text-align: center;
+    color: #5E92DE;
+}
+
+form {
+    padding: 10px;
+}
+
+.login-page {
+    /* background-color: teal; */
+    grid-column: 2 / 3;
+    grid-row: 2;
+    height: fit-content;
+}
+
+form input, form label {
+    display: block;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+label.login-label {
+    font-size: medium;
+    color: #65FDFE;
+    font-weight: bold;
+    margin-left: 50%;
+    transform: translateX(-60%);
+}
+
+input.main {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    color: #65FDFE;
+    background-color: #344395;
+    border-color: #65FDFE;
+    width: 60%;
+}
+
+.form-buttons {
+    margin-top: 10px;
+    width: 60%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: flex-start;
+}
+
+.form-buttons input.submit {
+    width: 50%;
+    margin: 5px;
+    color: #65FDFE;
+    background-color: #344395;
+    border-color: #65FDFE;
+}
+
+
+/* Test */
+.test {
+    background-color: white;
+    width: 60%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+
+}
+
+.test-btn {
+    /* font-size: xx-large; */
+    /* display: inline; */
+
+    /* height: 100%; */
+    width: 50%;
+    /* padding: 5px; */
+    margin: 5px;
+
+}

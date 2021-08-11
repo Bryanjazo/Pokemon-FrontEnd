@@ -1,0 +1,66 @@
+div.pokedex-container li img {
+    height: 12vh;
+    padding: 10%;
+    animation-name: floating;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }   
+}
+
+div.pokedex-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    width: 90%;
+    color: grey;
+    list-style-type: none;
+    align-items: center;
+    padding-right: 3%;
+    margin:auto;
+}
+
+div.pokedex-container li {
+    width: 10vh;
+    justify-content: center;
+    text-align: center;
+    padding-top: 3%;
+    padding-right: 5%;
+    margin: auto;
+
+}
+
+img.dialogue-image {
+    height:25vh;
+    grid-column: 0/ 1;
+    position: unset;
+}
+
+div.dialogue-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+body > div.MuiDialog-root > div.MuiDialog-container.MuiDialog-scrollPaper > div > div.MuiDialogContent-root.WithStyles\(ForwardRef\(DialogContent\)\)-root-11.MuiDialogContent-dividers > p.MuiTypography-root.dialogue-box.MuiTypography-body1.MuiTypography-gutterBottom > div > p {
+    grid-column: 1/2;
+}
+
+ul.pokemon-moves{
+    overflow-y: scroll;
+    height: 15vh;
+    font-size: small;
+}
+
+p.pokemon-description {
+    font-size: small;
+}
+
+p.pokemon-stat {
+    font-size: small;
+    font-weight: bold;
+}
