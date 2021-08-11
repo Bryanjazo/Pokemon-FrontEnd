@@ -28,7 +28,7 @@ const BattleSelectContainer = () => {
     return (
         <>
         <h1>Select Team</h1><br></br>
-        {battlePokemon[5].id !== undefined ? <div className="battle-button"><button onClick={handleBattleClick}>BATTLE!</button></div> : null}
+        {battlePokemon[0].id !== undefined ? <div className="battle-button"><button onClick={handleBattleClick}>BATTLE!</button></div> : null}
         <div className="battle-select-pokemon">
         {battlePokemon.map(p => {
             if (p.front_image) {
