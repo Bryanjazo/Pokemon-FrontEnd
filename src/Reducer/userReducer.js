@@ -21,13 +21,13 @@ const userReducer = (state = userDetails, action) =>{
         case "GET_USER_POKEMON":
           return {
             ...state,
-            pokemon: action.payload
+            userPokemon: action.payload
           }
           
         case "ADD_USER_POKEMON":
           return {
             ...state,
-            pokemon: [...state.pokemon, action.payload]
+            userPokemon: [...state.pokemon, action.payload]
           }
 
       default:
