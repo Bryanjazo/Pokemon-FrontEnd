@@ -1,5 +1,6 @@
 const initialState = {
-    pokemon: []
+    pokemon: [],
+    loading: false
 }
 
 const pokemonReducer = (state = initialState, action) => {
@@ -7,7 +8,8 @@ const pokemonReducer = (state = initialState, action) => {
         case "GET_POKEMON": 
             return {
                 ...state,
-            pokemon: [...action.payload]
+            pokemon: [...action.payload],
+            loading: true
             }
         default: 
             return state

@@ -2,7 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import './login_page.css'
 import { signIn } from '../../actions/authentication';
-import Loading from '../Loading'
+// import Loading from '../Loading'
+import * as ReactBootStrap from 'react-bootstrap';
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -16,7 +17,7 @@ export const LoginPage = () => {
     function handleSubmit(e) {
         e.preventDefault()
 
-        if(email != '' && password != '') {
+        if(email !== '' && password !== '') {
             if(signUp) {
                 if(password === passwordTwo) {
                   fetch('http://localHost:3000/users', {
@@ -71,7 +72,7 @@ export const LoginPage = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => setLoading(false), 6000)
+        setTimeout(() => setLoading(false), 1000)
     }, [])
 
     return (
@@ -93,9 +94,11 @@ export const LoginPage = () => {
                 <input className='main' type='Button' value='Forgot password' readOnly/>
             </form>
         </section>
+       
         </div>
         ): (
-            <Loading/>
+           
+            <ReactBootStrap.Spinner animation="grow" />
         )}
         </>
     )

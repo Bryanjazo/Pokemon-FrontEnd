@@ -1,10 +1,23 @@
 import {  InputLabel, makeStyles, MenuItem, Radio, RadioGroup, Select, TextField } from '@material-ui/core';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState} from 'react';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import { getPokemon } from '../../actions/pokemon';
 import Pokemon from './Pokemon';
 import './pokemon.css'
+
+
+// const pokemonLoader = useSelector(state => state.pokemonReducer.loading)
+
+// const handleLoading = () => {
+//   if(loading === false ) {
+//     return <div>Loading...</div>
+// } else {
+//     return PokemonsContainer
+// }
+// }
+//
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,6 +36,8 @@ const PokemonsContainer = () => {
     const [tier, setTier] = React.useState('');
     const [filteredPokemon, setFilteredPokemon] = React.useState([])
     const [pokemonName, setPokemonName] = React.useState("")
+
+   
 
     const handleChange = (event) => {
         setTier(event.target.value);
@@ -101,6 +116,7 @@ return (
 )
 
 }
+
 
 export default PokemonsContainer;
 
