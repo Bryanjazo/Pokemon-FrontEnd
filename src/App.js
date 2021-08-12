@@ -14,7 +14,7 @@ import BattleSelectContainer from './components/battle/BattleSelectContainer';
 import { getUserPokemon } from './actions/userpokemon';
 import NavBar from './components/Home/navBar.js';
 
-import {FetchOauth} from './actions/authentication.js'
+import {fetchOauth} from './actions/authentication.js'
 
 
 function App() {
@@ -32,9 +32,9 @@ console.log(authenthicatedUser)
 
   useEffect(() => {
     if (pokemon.length === 0) dispatch(getPokemon())
-    if(user) dispatch(getUserPokemon())
+
     if(userOauth){
-      dispatch(FetchOauth(userOauth))
+      dispatch(fetchOauth(userOauth))
       setAuthenthicated(true)
     }else{
       <Redirect to="/Login"></Redirect>

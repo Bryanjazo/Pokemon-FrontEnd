@@ -1,4 +1,4 @@
-export const addPokemonToUser = (user_id, pokemon_id) => {
+export const addPokemonToUser = (user_id, pokemon_id, active_moves) => {
     return (dispatch) => {
         fetch(`http://localhost:8080/api/v1/users/${user_id}/user_pokemons`, {
             method: 'POST',
@@ -6,7 +6,7 @@ export const addPokemonToUser = (user_id, pokemon_id) => {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
             },
-            body: JSON.stringify({user_id, pokemon_id})
+            body: JSON.stringify({user_id, pokemon_id, active_moves})
         })
         .then(resp => resp.json())
         .then(data => {
