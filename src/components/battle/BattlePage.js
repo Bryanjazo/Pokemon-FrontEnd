@@ -4,12 +4,7 @@ import MovesAlert from './MovesAlert';
 import './battle.css'
 
 const BattlePage = (props) => {
-    const renderMoveFromStringToObject = (array, p) =>{
-        for(let i in array){
-            let move = p.moves.find((m) => m.name === array[i])
-            array[i] = move
-        }
-    }
+   
     const [selectedPokemon, setSelectedPokemon] = useState({})
 
     useEffect(() => {

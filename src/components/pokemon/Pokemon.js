@@ -32,8 +32,8 @@ const Pokemon = (props) => {
 
 
     const handlePurchase = () => {
-        dispatch(addPokemonToUser(parseInt(user.id), props.pokemon.id, localMoves))
-        dispatch(subtractTokensFromUser(subtractTokens))
+        dispatch(addPokemonToUser(parseInt(user.id), props.pokemon.id, localMoves, user.tokens, props.pokemon.tier))
+        
         setLocalMoves([])
       }
 
