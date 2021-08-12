@@ -8,7 +8,15 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+/* backgroundImage: "url(" + "../.././img/battle-background.jpeg" + ")",
+marginTop: theme.spacing(8),
+display: 'flex',
+flexDirection: 'column',
+alignItems: 'center', */
 
+.LogInContainer{
+  background-image: url('../.././img/battle-background.jpeg');
+}
 h1 {
     text-align: center;
     color: #5E92DE;

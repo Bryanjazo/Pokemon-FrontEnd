@@ -12,8 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {useDispatch} from 'react-redux'
-import './login_page.css'
+import {useDispatch,useSelector} from 'react-redux'
+
 
 function Copyright() {
   return (
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
@@ -49,19 +48,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignUp() {
   const classes = useStyles();
   const dispatch = useDispatch()
   const history = useHistory();
   const [email, setEmail] = useState('')
-
+  const current_user = useSelector(state => state.userReducer.details)
   const [password, setPassword] = useState('')
+  console.log(current_user)
 
   const handleSignIn = (e) => {
     e.preventDefault()
    // Send request to users to API
    console.log('signed up')
-   fetch('http://localhost:8080/api/v1/sessions', {
+   fetch('http://localhost:8080/api/v1/users', {
      method: 'POST',
      headers: {
        'Content-Type': 'application/json',
@@ -74,11 +74,13 @@ export default function SignIn() {
    })
    .then(resp => resp.json())
    .then(function(data){
-     console.log(data)
+     console.log(data.id)
+
      if(data.uid){
+       console.log(data)
        // console.log(data.jwt, "tokennnn")
         localStorage.setItem("token", data.uid)
-          console.log(localStorage.token)
+        console.log(localStorage.token)
         // localStorage.setItem("token", data.jwt)
         dispatch({
           type: "GET_USER_DETAILS",
@@ -87,22 +89,20 @@ export default function SignIn() {
         // settingUserSignUp()
         history.push('/Home')
      }else{
-       alert("Wrong Email Or Password")
+       alert("Email Already Exists")
      }
    })
   }
   console.log(email)
   return (
-
     <Container component="main" maxWidth="xs">
-      <div className="LogInContainer">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Sign Up
         </Typography>
         <form onSubmit={handleSignIn} className={classes.form} noValidate>
           <TextField
@@ -151,8 +151,8 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/SignUp" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link to="/Login" variant="body2">
+                {"Already Have An Account? Login"}
               </Link>
             </Grid>
           </Grid>
@@ -161,8 +161,6 @@ export default function SignIn() {
       <Box mt={8}>
         <Copyright />
       </Box>
-        </div>
     </Container>
-
   );
 }

@@ -10,31 +10,16 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
-import { addPokemonToUser, subtractTokensFromUser } from '../../actions/userpokemon';
+import { addPokemonToUser } from '../../actions/userpokemon';
 import { useSelector } from 'react-redux';
 
 
 
-const Pokemon = (props) => {
+const UserPokemon = (props) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(state => state.userReducer.details)
-    
 
-
-    const subtractTokens = () => {
-        if (props.pokemon.tier === 1) return user.tokens - 20
-        if (props.pokemon.tier === 2) return user.tokens - 50
-        if (props.pokemon.tier === 3) return user.tokens - 100
-    }
-
-
-    const handlePurchase = () => {
-        dispatch(addPokemonToUser(parseInt(user.id), props.pokemon.id))
-        dispatch(subtractTokensFromUser(subtractTokens()))
-      }
-
-    
 
     useEffect(() => {
         return () => {
@@ -98,35 +83,32 @@ const Pokemon = (props) => {
 
 
     return (
-        <li key={props.pokemon.uid} >
-            <b>{props.pokemon.name}</b><br />
-            <img src={props.pokemon.front_image} onClick={handleClickOpen}></img><br /><br/>
-            {`Tier: ${props.pokemon.tier}`}
+        <li key={props.uid} >
+            <b>{props.name}</b><br />
+            <img src={props.frontImage} onClick={handleClickOpen}></img><br /><br/>
+            {`Tier: ${props.tier}`}
 
 
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    {`${props.pokemon.name}`}
+                    {`${props.name}`}
                 </DialogTitle>
                 <DialogContent dividers >
                     <Typography gutterBottom className="dialogue-box" >
 
-                    <img src={props.pokemon.front_image} className="dialogue-image"></img>
+                    <img src={props.frontImage} className="dialogue-image"></img>
                     </Typography>
                     <Typography gutterBottom>
                     <div className={`pokemon-dialogue-info`}>
-                    <h3>{props.pokemon.name}</h3>
-                    <h3>{`Pokedex #${props.pokemon.uid}`}</h3>
-                    <p className="pokemon-description">{props.pokemon.description}</p>
-                    <p className="pokemon-stat">Attack: {props.pokemon.attack}</p>
-                    <p className="pokemon-stat">Defense: {props.pokemon.defense}</p>
-                    <p className="pokemon-stat">Special Attack: {props.pokemon.special_attack}</p>
-                    <p className="pokemon-stat">Special Defense: {props.pokemon.special_defense}</p>
-                    <p className="pokemon-stat">Speed: {props.pokemon.speed}</p>
-                    <p><b>{props.pokemon.name}'s Moves</b></p>
-                    <ul className={`pokemon-moves`}>
-                        {props.pokemon.moves.map((m) => <li><b>{m.name}</b>{` Power: ${m.power} Type: ${m.pokemon_type}`}</li> )}
-                    </ul>
+                    <h3>{props.name}</h3>
+                    <h3>{`Pokedex #${props.uid}`}</h3>
+                    <p className="pokemon-description">{props.description}</p>
+                    <p className="pokemon-stat">Attack: {props.attack}</p>
+                    <p className="pokemon-stat">Defense: {props.defense}</p>
+                    <p className="pokemon-stat">Special Attack: {props.special_attack}</p>
+                    <p className="pokemon-stat">Special Defense: {props.special_defense}</p>
+                    <p className="pokemon-stat">Speed: {props.speed}</p>
+                    <p><b>{props.name}'s Moves</b></p>
                     </div>
                     </Typography>
                     <Typography gutterBottom>
@@ -134,9 +116,6 @@ const Pokemon = (props) => {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={() => handlePurchase()} color="primary">
-                        Buy Pokemon
-          </Button>
                 </DialogActions>
             </Dialog>
         </li>
@@ -144,4 +123,4 @@ const Pokemon = (props) => {
     );
 }
 
-export default Pokemon;
+export default UserPokemon;

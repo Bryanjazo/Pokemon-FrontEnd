@@ -1,22 +1,11 @@
 import {  InputLabel, makeStyles, MenuItem, Radio, RadioGroup, Select, TextField } from '@material-ui/core';
-import clsx from 'clsx';
-import React, { useEffect, useState} from 'react';
-import { useDispatch, useSelector, connect } from 'react-redux';
-import { getPokemon } from '../../actions/pokemon';
+
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { assignMoves, getPokemon } from '../../actions/pokemon';
+import { addPokemonToUser } from '../../actions/userpokemon';
 import Pokemon from './Pokemon';
 import './pokemon.css'
-
-
-// const pokemonLoader = useSelector(state => state.pokemonReducer.loading)
-
-// const handleLoading = () => {
-//   if(loading === false ) {
-//     return <div>Loading...</div>
-// } else {
-//     return PokemonsContainer
-// }
-// }
-//
 
 
 
@@ -43,9 +32,12 @@ const PokemonsContainer = () => {
         setTier(event.target.value);
       };
 
+
       useEffect(() => {
+        
         if (filteredPokemon.length === 0 && tier == "" && pokemonName == ""){
          setFilteredPokemon(pokemon)
+
         }
         filteredSearch()
           return () => {
