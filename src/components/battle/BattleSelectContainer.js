@@ -28,6 +28,15 @@ const BattleSelectContainer = () => {
             let filteredPokemon = pokemon.filter(poke => poke.tier === p.pokemon.tier)
             let randomNumber = Math.floor(Math.random() * filteredPokemon.length)
             aIPokemon[i] = filteredPokemon[randomNumber]
+            let totalMoves = aIPokemon[i]["moves"]
+            let activeMoves = []
+            let count = 0
+            while (count < 4){
+                let randomNum = Math.floor(Math.random() * totalMoves.length)
+                activeMoves.push(totalMoves[randomNum])
+                count++
+            }
+            aIPokemon[i]["moves"] = activeMoves
         }
     }
 
@@ -56,7 +65,7 @@ const BattleSelectContainer = () => {
     }
     if (battleTime === true) {
 
-        return (<BattlePage userBattleTeam={battlePokemon}/>)
+        return (<BattlePage userBattleTeam={battlePokemon} aITeam={aIPokemon}/>)
     } else if (userPokemon){
 
     return (

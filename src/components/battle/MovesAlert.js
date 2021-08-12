@@ -50,7 +50,7 @@ const MovesAlert = (props) => {
           horizontal: 'center',
         }}
       >
-        {props.moves.purchased_moves.map(m => {
+        {props.moves.active_moves.map(m => {
           return (
           <Typography className={classes.typography}>
         <FormControlLabel
