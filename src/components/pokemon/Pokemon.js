@@ -32,7 +32,7 @@ const Pokemon = (props) => {
 
 
     const handlePurchase = () => {
-        dispatch(addPokemonToUser(parseInt(user.id), props.pokemon.id))
+        dispatch(addPokemonToUser(parseInt(user.id), props.pokemon.id, localMoves))
         dispatch(subtractTokensFromUser(subtractTokens))
         setLocalMoves([])
       }
@@ -54,9 +54,7 @@ const Pokemon = (props) => {
             console.log(event.target.checked)
             setLocalMoves([...localMoves, m.name])
             handleDisablePurchase()
-    
         } else {
-
             console.log(event.target.checked)
             setLocalMoves(localMoves.filter((move) => move !== m.name))
             handleDisablePurchase()

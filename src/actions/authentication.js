@@ -1,4 +1,4 @@
-
+import { getUserPokemon } from "./userpokemon"
 
 export const signIn = (email, password) => {
   fetch('http://localHost:8080/api/v1/sessions', {
@@ -50,7 +50,7 @@ export const LogOut = () => {
     }
 }
 
-export const FetchOauth = (uid) =>{
+export const fetchOauth = (uid) =>{
   return async (dispatch) => {
     const response = await fetch(`http://localhost:8080/api/v1/users/${uid}`);
     const data = await response.json();
@@ -58,6 +58,7 @@ export const FetchOauth = (uid) =>{
       type: 'AUTHENTHICATE_USER',
       payload: data
     })
+    await dispatch(getUserPokemon(data.id))
     }
 
 }

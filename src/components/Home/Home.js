@@ -12,7 +12,6 @@ function Home(){
   redirect(history)
 
   useEffect(() => {
-    dispatch(getUserPokemon(user.id))
 
   }, []);
 
