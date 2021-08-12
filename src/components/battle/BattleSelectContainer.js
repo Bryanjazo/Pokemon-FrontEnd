@@ -8,6 +8,7 @@ import BattlePage from './BattlePage';
 const BattleSelectContainer = () => {
     const dispatch = useDispatch()
     const [battlePokemon, setBattlePokemon] = useState([{}, {}, {}, {}, {}, {}])
+    const [aIPokemon, setaIPokemon] = useState([{}, {}, {}, {}, {}, {}])
     const [count, setCount] = useState(0)
     const [battleTime, setBattleTime] = useState(false)
     const pokemon = useSelector(state => state.pokemonReducer.pokemon)
@@ -20,11 +21,22 @@ const BattleSelectContainer = () => {
         };
     }, [battlePokemon]);
 
-    
+    const createAITeam = (p, i) => {
+        if (p.pokemon) {
+            let filteredPokemon = pokemon.filter(poke => poke.tier === p.pokemon.tier)
+            let randomNumber = Math.floor(Math.random() * filteredPokemon.length)
+            aIPokemon[i] = filteredPokemon[randomNumber]
+        }
+    }
+
     const handleBattleClick = (event) => {
         event.preventDefault()
         setBattleTime(true)
+        for (let i = 0;i < battlePokemon.length; i++) {
+            createAITeam(battlePokemon[i], i)
+        }
     }
+
     const renderMoveFromStringToObject = (array, p) =>{
         for(let i in array){
             let move = p.moves.find((m) => m.name === array[i])
@@ -42,7 +54,7 @@ const BattleSelectContainer = () => {
     }
     if (battleTime === true) {
 
-        return (<BattlePage userBattleTeam={battlePokemon}/>)
+        return (<BattlePage userBattleTeam={battlePokemon} aITeam={aIPokemon}/>)
     } else {
     return (
         <>
