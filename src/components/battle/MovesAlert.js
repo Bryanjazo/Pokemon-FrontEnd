@@ -37,7 +37,7 @@ const MovesAlert = (props) => {
     return (
         <div>
         <div className="selected-pokemon"><img src={props.selectedPokemon.pokemon.back_image} onClick={handleClick}></img>
-          {props.selectedPokemon.purchased_moves.map(m => {
+          {props.selectedPokemon.active_moves.map(m => {
             return(
               <span className="moveButtons">
                 <button>{m}</button>
