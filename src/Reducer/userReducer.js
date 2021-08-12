@@ -15,8 +15,8 @@ const userReducer = (state = userDetails, action) =>{
         case "CLEAR_USER_DETAIL":
           return{
             ...state,
-            details: [],
-            pokemon: []
+            authenthication: [],
+        
         }
 
         case "GET_USER_POKEMON":

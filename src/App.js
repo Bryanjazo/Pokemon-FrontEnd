@@ -28,12 +28,15 @@ function App() {
   const userOauth = localStorage.token
   const [authenthicated, setAuthenthicated] = useState(false)
 
-console.log(authenthicatedUser)
+
 
   useEffect(() => {
+
     if (pokemon.length === 0) dispatch(getPokemon())
+
     if(user) dispatch(getUserPokemon())
     if(userOauth){
+      console.log('true')
       dispatch(FetchOauth(userOauth))
       setAuthenthicated(true)
     }else{
@@ -41,22 +44,23 @@ console.log(authenthicatedUser)
       alert("Please Sign In")
     }
   }, []);
+  console.log(authenthicatedUser)
 
-
+  console.log("User authenthication:", authenthicated, user)
   return (
     <Router>
       <Switch>
         <Route path='/Login' component={SignIn}/>
         <Route path="/SignUp" component={SignUp}/>
-          <Route path={authenthicatedUser ? '/Home' : '/'}>
+          <Route path={authenthicated ? '/Home' : '/'}>
           <NavBar />
           <Home />
           </Route>
-        <Route exact path={authenthicatedUser ? '/pokemon' : '/'}>
+        <Route exact path={authenthicated ? '/pokemon' : '/'}>
          <NavBar/>
          <PokemonsContainer />
         </Route>
-        <Route exact path={authenthicatedUser ? '/battle' : '/'} >
+        <Route exact path={authenthicated ? '/battle' : '/'} >
           <NavBar/>
           <BattleSelectContainer />
         </Route>
