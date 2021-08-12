@@ -18,11 +18,11 @@ const BattleSelectContainer = () => {
 
     useEffect(() => {
 
-<<<<<<< HEAD
        
     }, [battlePokemon, userPokemon]);
     
-=======
+    
+
     const createAITeam = (p, i) => {
         if (p.pokemon) {
             let filteredPokemon = pokemon.filter(poke => poke.tier === p.pokemon.tier)
@@ -31,7 +31,6 @@ const BattleSelectContainer = () => {
         }
     }
 
->>>>>>> origin/main
     const handleBattleClick = (event) => {
         event.preventDefault()
         setBattleTime(true)
@@ -39,9 +38,6 @@ const BattleSelectContainer = () => {
             createAITeam(battlePokemon[i], i)
         }
     }
-<<<<<<< HEAD
-=======
-
     const renderMoveFromStringToObject = (array, p) =>{
         for(let i in array){
             let move = p.moves.find((m) => m.name === array[i])
@@ -49,7 +45,7 @@ const BattleSelectContainer = () => {
         }
     
     }
->>>>>>> origin/main
+
     const handleClick = (event) => {
         if (battlePokemon[5].id === undefined) {
             event.target.style.display = "none"
