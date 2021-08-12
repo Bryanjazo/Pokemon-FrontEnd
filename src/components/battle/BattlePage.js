@@ -10,7 +10,7 @@ const BattlePage = (props) => {
             array[i] = move
         }
     }
-    const [selectedPokemon, setSelectedPokemon] = useState({})
+    const [selectedPokemon, setSelectedPokemon] = useState(props.userBattleTeam[0])
 
     useEffect(() => {
         return () => { 
