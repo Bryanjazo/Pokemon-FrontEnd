@@ -1,5 +1,6 @@
 const userDetails = {
-  details: []
+  details: [],
+  authenthication: []
 }
 
 
@@ -9,13 +10,13 @@ const userReducer = (state = userDetails, action) =>{
           return {
               ...state,
           details: action.payload,
-          
+
         }
         case "CLEAR_USER_DETAIL":
           return{
             ...state,
             details: [],
-            pokemon: []       
+            pokemon: []
         }
 
         case "GET_USER_POKEMON":
@@ -23,7 +24,7 @@ const userReducer = (state = userDetails, action) =>{
             ...state,
             userPokemon: action.payload
           }
-          
+
         case "ADD_USER_POKEMON":
           return {
             ...state,
@@ -37,7 +38,11 @@ const userReducer = (state = userDetails, action) =>{
                 tokens: action.payload
               }
             }
-
+            case "AUTHENTHICATE_USER":
+              return {
+                ...state,
+                authenthication: action.payload
+              }
       default:
           return state
   }

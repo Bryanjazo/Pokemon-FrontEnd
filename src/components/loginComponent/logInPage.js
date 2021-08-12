@@ -74,7 +74,7 @@ export default function SignIn() {
    })
    .then(resp => resp.json())
    .then(function(data){
-     console.log(data.id)
+     console.log(data)
      if(data.uid){
        // console.log(data.jwt, "tokennnn")
         localStorage.setItem("token", data.uid)
