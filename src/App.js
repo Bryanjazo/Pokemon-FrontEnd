@@ -9,12 +9,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemon } from './actions/pokemon';
 import Home from './components/Home/Home.js'
-import BattlePage from './components/battle/BattlePage';
 import BattleSelectContainer from './components/battle/BattleSelectContainer';
-import { getUserPokemon } from './actions/userpokemon';
 import NavBar from './components/Home/navBar.js';
-
 import {fetchOauth} from './actions/authentication.js'
+import { getMoves } from './actions/moves';
 
 
 function App() {
@@ -32,7 +30,7 @@ console.log(authenthicatedUser)
 
   useEffect(() => {
     if (pokemon.length === 0) dispatch(getPokemon())
-
+    dispatch(getMoves())
     if(userOauth){
       dispatch(fetchOauth(userOauth))
       setAuthenthicated(true)

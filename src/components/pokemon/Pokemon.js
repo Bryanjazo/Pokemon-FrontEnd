@@ -138,7 +138,8 @@ const Pokemon = (props) => {
                     <Typography gutterBottom>
                     <div className={`pokemon-dialogue-info`}>
                     <h3>{props.pokemon.name}</h3>
-                    <h3>{`Pokedex #${props.pokemon.uid}`}</h3>
+                    <h3>{`Pokedex #${props.pokemon.uid}`}</h3>  
+                    <h5>Type: {props.pokemon.types.join("    ")}</h5>
                     <p className="pokemon-description">{props.pokemon.description}</p>
                     <p className="pokemon-stat">Attack: {props.pokemon.attack}</p>
                     <p className="pokemon-stat">Defense: {props.pokemon.defense}</p>
@@ -147,7 +148,7 @@ const Pokemon = (props) => {
                     <p className="pokemon-stat">Speed: {props.pokemon.speed}</p>
                     <p><b>{props.pokemon.name}'s Moves</b></p>
                     <ul className={`pokemon-moves`}>
-                        {props.pokemon.moves.map((m) => <li>{m.name}<input checked={localMoves.find((move) => move === m.name)} onChange={(event) => onCheckMove(event, m)} disabled= {localMoves.length >= 4 ? true : false}  type="checkbox"/></li>)}           
+                        {props.pokemon.moves.map((m) => <li><b>{m.name}</b>{` Power: ${m.power} Type: ${m.pokemon_type}  `}<input checked={localMoves.find((move) => move === m.name)} onChange={(event) => onCheckMove(event, m)} disabled= {localMoves.length >= 4 ? true : false}  type="checkbox"/></li>)}           
                     </ul>
                     </div>
                     </Typography>
