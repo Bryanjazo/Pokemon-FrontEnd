@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 });
 
 export default function BattleMenu(props) {
-  debugger
+  
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   const dispatch = useDispatch()

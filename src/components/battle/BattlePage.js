@@ -54,8 +54,7 @@ const BattlePage = (props) => {
             </div>
             </div> 
         </div>
-        {selectedPokemon.pokemon ? <MovesAlert moves={selectedPokemon}/> : null}
-        {/* {selectedPokemon.id ? <div className="selected-pokemon"><img src={selectedPokemon.pokemon.back_image}></img></div> : null} */}
+        {selectedPokemon.pokemon ? <MovesAlert selectedPokemon={selectedPokemon}/> : null}
         </>
     );
 }
