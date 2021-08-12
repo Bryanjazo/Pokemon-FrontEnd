@@ -1,4 +1,3 @@
-import { getUserPokemon } from "./userpokemon"
 
 
 export const signIn = (email, password) => {
@@ -18,7 +17,6 @@ export const signIn = (email, password) => {
   .then(function(data){
     console.log(data)
     localStorage.setItem("token", data.uid)
-    localStorage.setItem("user_id", data.id)
   })
 }
 
@@ -46,8 +44,20 @@ export const signUp = (email, password) => {
 export const LogOut = () => {
   return(dispatch) => {
     localStorage.setItem('token', '')
-    dispatch({
+      dispatch({
       type: 'CLEAR_USER_DETAIL'
+      })
+    }
+}
+
+export const FetchOauth = (uid) =>{
+  return async (dispatch) => {
+    const response = await fetch(`http://localhost:8080/api/v1/users/${uid}`);
+    const data = await response.json();
+    dispatch({
+      type: 'AUTHENTHICATE_USER',
+      payload: data
     })
-      }
+    }
+
 }

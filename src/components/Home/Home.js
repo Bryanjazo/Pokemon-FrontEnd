@@ -13,12 +13,12 @@ function Home(){
 
   useEffect(() => {
     dispatch(getUserPokemon(user.id))
-    
+
   }, []);
-  
+
   return(
     <div>
-    {<NavBar/>}
+
     </div>
   )
 }
