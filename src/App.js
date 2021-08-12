@@ -31,19 +31,18 @@ function App() {
 
 
   useEffect(() => {
-
-    if (pokemon.length === 0) dispatch(getPokemon())
-
+    if (pokemon.length === 0) {dispatch(getPokemon())}
     if(user) dispatch(getUserPokemon())
     if(userOauth){
       console.log('true')
       dispatch(FetchOauth(userOauth))
       setAuthenthicated(true)
+
     }else{
       <Redirect to="/Login"></Redirect>
       alert("Please Sign In")
     }
-  }, []);
+  }, [pokemon]);
   console.log(authenthicatedUser)
 
   console.log("User authenthication:", authenthicated, user)

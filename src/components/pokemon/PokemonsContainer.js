@@ -32,7 +32,6 @@ const PokemonsContainer = () => {
 
 
       useEffect(() => {
-        
         if (filteredPokemon.length === 0 && tier == "" && pokemonName == ""){
          setFilteredPokemon(pokemon)
 
@@ -45,7 +44,7 @@ const PokemonsContainer = () => {
 
     const handleNameChange = async (event) => {
         setPokemonName(event.target.value)
-        
+
     }
 
     const filteredSearch = () => {
@@ -55,7 +54,7 @@ const PokemonsContainer = () => {
         } else {
             setFilteredPokemon(pokemon)
         }
-        
+
         if(tier){
             setFilteredPokemon(pokemon.filter((pokemon) => pokemon.tier === tier && pokemon.name.toLowerCase().includes(pokemonName.toLowerCase())))
         }
@@ -108,6 +107,3 @@ return (
 }
 
 export default PokemonsContainer;
-
-
-

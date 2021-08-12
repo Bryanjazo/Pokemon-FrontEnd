@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import { addPokemonToUser, subtractTokensFromUser } from '../../actions/userpokemon';
 import { useSelector } from 'react-redux';
+import { getPokemon } from '../../actions/pokemon.js';
 
 
 
@@ -19,7 +20,7 @@ const Pokemon = (props) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(state => state.userReducer.details)
-    
+    const pokemon = useSelector(state => state.pokemonReducer.pokemon)
 
 
     const subtractTokens = () => {
@@ -34,13 +35,9 @@ const Pokemon = (props) => {
         dispatch(subtractTokensFromUser(subtractTokens()))
       }
 
-    
 
-    useEffect(() => {
-        return () => {
-            console.log(open)
-        };
-    }, []);
+
+
 
 
     const styles = (theme) => ({
