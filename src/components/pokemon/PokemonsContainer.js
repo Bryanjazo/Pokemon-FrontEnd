@@ -37,7 +37,6 @@ const PokemonsContainer = () => {
         dispatch(getUserPokemon(user.id))
         if (filteredPokemon.length === 0 && tier == "" && pokemonName == ""){
          setFilteredPokemon(pokemon)
-
         }
         filteredSearch()
           return () => {
