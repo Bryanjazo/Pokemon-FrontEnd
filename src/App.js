@@ -22,7 +22,6 @@ function App() {
   const pokemon = useSelector(state => state.pokemonReducer.pokemon)
   const moves = useSelector(state => state.movesReducer.moves)
   const user = useSelector(state => state.userReducer.details)
-  const authenthicatedUser = useSelector(state => state.userReducer.authenthication)
   const current_user = user.uid
   const dispatch = useDispatch()
   const userOauth = localStorage.token
@@ -31,8 +30,8 @@ function App() {
 
 
   useEffect(() => {
-    if (pokemon.length === 0) {dispatch(getPokemon())}
-    if(user) dispatch(getUserPokemon())
+    // if (pokemon.length === 0) {dispatch(getPokemon())}
+    // if(user) dispatch(getUserPokemon())
     if(userOauth){
       console.log('true')
       dispatch(FetchOauth(userOauth))
@@ -43,9 +42,9 @@ function App() {
       alert("Please Sign In")
     }
   }, [pokemon]);
-  console.log(authenthicatedUser)
 
-  console.log("User authenthication:", authenthicated, user)
+
+  console.log("User authenthication:", user)
   return (
     <Router>
       <Switch>

@@ -1,6 +1,5 @@
 const userDetails = {
   details: [],
-  authenthication: []
 }
 
 
@@ -16,7 +15,7 @@ const userReducer = (state = userDetails, action) =>{
           return{
             ...state,
             authenthication: [],
-        
+
         }
 
         case "GET_USER_POKEMON":
@@ -41,7 +40,7 @@ const userReducer = (state = userDetails, action) =>{
             case "AUTHENTHICATE_USER":
               return {
                 ...state,
-                authenthication: action.payload
+                details: action.payload
               }
       default:
           return state
