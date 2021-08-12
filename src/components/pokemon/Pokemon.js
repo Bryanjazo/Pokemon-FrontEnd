@@ -10,15 +10,17 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
-import { addPokemonToUser, subtractTokensFromUser } from '../../actions/userpokemon';
+import { addPokemonToUser, getUserPokemon, subtractTokensFromUser } from '../../actions/userpokemon';
 import { useSelector } from 'react-redux';
-
+import { Select } from '@material-ui/core';
 
 
 const Pokemon = (props) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(state => state.userReducer.details)
+    const [localMoves, setLocalMoves] = useState([]);
+    const userPokemon = useSelector(state => state.userReducer.userPokemon)
     
 
 
@@ -31,17 +33,35 @@ const Pokemon = (props) => {
 
     const handlePurchase = () => {
         dispatch(addPokemonToUser(parseInt(user.id), props.pokemon.id))
-        dispatch(subtractTokensFromUser(subtractTokens()))
+        dispatch(subtractTokensFromUser(subtractTokens))
+        setLocalMoves([])
       }
 
+    const coinCheck = () => {
+        if (props.pokemon.tier === 1 && user.tokens < 20) return true
+        if (props.pokemon.tier === 2 && user.tokens < 50) return true
+        if (props.pokemon.tier === 3 && user.tokens < 100) return true
+    }
+
+      const handleDisablePurchase = () => {
+            if(localMoves.length === 0 || coinCheck()) return true
+            return false
+            
+      }
+
+    const onCheckMove = (event, m) => {
+        if(event.target.checked === true){
+            console.log(event.target.checked)
+            setLocalMoves([...localMoves, m.name])
+            handleDisablePurchase()
     
+        } else {
 
-    useEffect(() => {
-        return () => {
-            console.log(open)
-        };
-    }, []);
-
+            console.log(event.target.checked)
+            setLocalMoves(localMoves.filter((move) => move !== m.name))
+            handleDisablePurchase()
+        }
+    }
 
     const styles = (theme) => ({
         root: {
@@ -69,6 +89,9 @@ const Pokemon = (props) => {
             </MuiDialogTitle>
         );
     });
+    useEffect(() => {
+        
+    }, [userPokemon]);
 
     const DialogContent = withStyles((theme) => ({
         root: {
@@ -93,6 +116,7 @@ const Pokemon = (props) => {
     const handleClose = () => {
         console.log("hi")
         setOpen(!open)
+        setLocalMoves([])
 
     };
 
@@ -125,16 +149,16 @@ const Pokemon = (props) => {
                     <p className="pokemon-stat">Speed: {props.pokemon.speed}</p>
                     <p><b>{props.pokemon.name}'s Moves</b></p>
                     <ul className={`pokemon-moves`}>
-                        {props.pokemon.moves.map((m) => <li><b>{m.name}</b>{` Power: ${m.power} Type: ${m.pokemon_type}`}</li> )}
+                        {props.pokemon.moves.map((m) => <li>{m.name}<input checked={localMoves.find((move) => move === m.name)} onChange={(event) => onCheckMove(event, m)} disabled= {localMoves.length >= 4 ? true : false}  type="checkbox"/></li>)}           
                     </ul>
                     </div>
                     </Typography>
                     <Typography gutterBottom>
-
+{console.log(userPokemon.includes((p) => props.pokemon.id == p.pokemon.id))}
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={() => handlePurchase()} color="primary">
+                    <Button autoFocus disabled={handleDisablePurchase()} onClick={() => handlePurchase()} color="primary">
                         Buy Pokemon
           </Button>
                 </DialogActions>
