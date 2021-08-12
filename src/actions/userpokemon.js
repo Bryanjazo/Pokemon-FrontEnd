@@ -1,4 +1,4 @@
-export const addPokemonToUser = (user_id, pokemon_id) => {
+export const addPokemonToUser = (user_id, pokemon_id, active_moves) => {
     return (dispatch) => {
         fetch(`http://localhost:8080/api/v1/users/${user_id}/user_pokemons`, {
             method: 'POST',
@@ -6,9 +6,21 @@ export const addPokemonToUser = (user_id, pokemon_id) => {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
             },
-            body: JSON.stringify({user_id, pokemon_id})
+            body: JSON.stringify({user_id, pokemon_id, active_moves})
         })
-        .then(resp => console.log(resp.json()))
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            if (!data.pokemon){
+                alert("I'm sorry but it looks like you already purchased this pokemon")
+            } else {
+                dispatch({
+                    type: "ADD_USER_POKEMON",
+                    payload: data
+                })
+                dispatch(subtractTokensFromUser())
+            }
+        })
         
     }
     // Post request will include the moves that you want and the pokemon ID
