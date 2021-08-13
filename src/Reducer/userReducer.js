@@ -27,7 +27,7 @@ const userReducer = (state = userDetails, action) =>{
         case "ADD_USER_POKEMON":
           return {
             ...state,
-            userPokemon: [...state.pokemon, action.payload]
+            userPokemon: [...state.userPokemon, action.payload]
           }
           case "SUBTRACT_TOKENS":
             return {
