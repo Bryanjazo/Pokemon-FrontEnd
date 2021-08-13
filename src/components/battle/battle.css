@@ -64,15 +64,20 @@ div.teams {
     flex-flow: row;
 }
 
-div.user-battle-team {
+div.user-battle-team, div.ai-battle-team {
     display: flex;
     justify-content: space-between;
     flex-flow: column;
     width: 90%;
     color: grey;
     align-items:flex-start;
-    margin:auto;
+    margin: 1vw;
     position: relative;
+}
+
+div.ai-battle-team {
+    align-items: flex-end;
+    margin-right: 3vw;
 }
 
 div.user-battle-team img, div.ai-battle-team img {

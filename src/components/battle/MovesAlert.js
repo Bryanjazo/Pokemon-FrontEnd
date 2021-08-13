@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MovesAlert = (props) => {
+  debugger
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [move, setMove] = React.useState({})
@@ -35,8 +36,16 @@ const MovesAlert = (props) => {
 
     return (
         <div>
-        <div className="selected-pokemon"><img src={props.moves.pokemon.back_image} onClick={handleClick}></img></div>
-        <Popover
+        <div className="selected-pokemon"><img src={props.selectedPokemon.pokemon.back_image} onClick={handleClick}></img>
+          {props.selectedPokemon.active_moves.map(m => {
+            return(
+              <span className="moveButtons">
+                <button>{m}</button>
+              </span>
+            )
+          })}
+          </div>
+        {/* <Popover
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -67,7 +76,7 @@ const MovesAlert = (props) => {
         </Typography>)
         } 
         )}
-      </Popover>
+      </Popover> */}
         </div>
     );
 }

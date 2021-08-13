@@ -7,7 +7,7 @@ const movesReducer = (state = initialState, action) => {
         case "GET_MOVES":
             return {
                 ...state,
-            moves: [...action.payload]
+            moves: action.payload
           }
         default:
             return state
