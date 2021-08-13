@@ -3,7 +3,7 @@ import {  InputLabel, makeStyles, MenuItem, Radio, RadioGroup, Select, TextField
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { assignMoves, getPokemon } from '../../actions/pokemon';
-import { addPokemonToUser } from '../../actions/userpokemon';
+import { addPokemonToUser, getUserPokemon } from '../../actions/userpokemon';
 import Pokemon from './Pokemon';
 import './pokemon.css'
 
@@ -24,6 +24,8 @@ const PokemonsContainer = () => {
     const [tier, setTier] = React.useState('');
     const [filteredPokemon, setFilteredPokemon] = React.useState([])
     const [pokemonName, setPokemonName] = React.useState("")
+    const user = useSelector(state => state.userReducer.details)
+    const userPokemon = useSelector(state => state.userReducer.userPokemon)
 
    
 
@@ -33,10 +35,9 @@ const PokemonsContainer = () => {
 
 
       useEffect(() => {
-        
+        dispatch(getUserPokemon(user.id))
         if (filteredPokemon.length === 0 && tier == "" && pokemonName == ""){
          setFilteredPokemon(pokemon)
-
         }
         filteredSearch()
           return () => {

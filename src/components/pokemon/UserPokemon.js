@@ -19,13 +19,14 @@ const UserPokemon = (props) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(state => state.userReducer.details)
+    const userPokemon = useSelector(state => state.userReducer.userPokemon)
 
 
     useEffect(() => {
+        
         return () => {
-            console.log(open)
         };
-    }, []);
+    }, [userPokemon]);
 
 
     const styles = (theme) => ({

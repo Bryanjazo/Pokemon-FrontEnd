@@ -8,6 +8,12 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import { useSelector } from 'react-redux';
+
+import 'PokemonDialogueBox.Css'
+
+
+
 
 const styles = (theme) => ({
   root: {
@@ -60,10 +66,16 @@ export default function PokemonDialogueBox() {
   };
 
   return (
+
+    
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open dialog
       </Button>
+
+      <div class="box">Huehuehue<i></i></div>
+
+     
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Modal title

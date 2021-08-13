@@ -1,13 +1,17 @@
 import './login_page2.css'
 import SignUp from './SignUp'
+
+
+
 function styledPage() {
     return (
         <div class="style-container">
                 <div class="style">
                     
+                    <div class="image-container">
                     
-                    <a class='image'><img src="https://fontmeme.com/permalink/210812/e85e4e556d7249a8313595d02d9e5784.png" alt="pokemon-font" border="0"/></a>
-                   
+                        <a class="image"><img src="https://fontmeme.com/permalink/210812/e85e4e556d7249a8313595d02d9e5784.png" alt="pokemon-font" border="0"/></a>
+                    </div>
 
                     <div class="container">
                         <div class="row">
@@ -33,6 +37,8 @@ function styledPage() {
                         </div>
                         
                     </div>
+                    <p> AnimeCity 2021</p>
+
                 </div>
                
         </div>

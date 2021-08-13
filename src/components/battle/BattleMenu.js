@@ -25,7 +25,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BattleMenu() {
+export default function BattleMenu(props) {
+  
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   const dispatch = useDispatch()
@@ -41,19 +42,16 @@ export default function BattleMenu() {
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h2">
-          Battle Stats
+          {props.userTeam ? "My Stats" : "Challenger Stats"}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Total Health: <br></br>
-          Current Health:
-        </Typography>
-        <Typography variant="body2" component="p">
+          Pokemon's Name: <br></br>
+          Pokemon Current Health: <br></br>
           Current Move:
-          <br />
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Exit Battle</Button>
+      {props.userTeam ? <Button size="small">Exit Battle</Button> : null}
       </CardActions>
     </Card>
   );
