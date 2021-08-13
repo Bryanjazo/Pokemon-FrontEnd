@@ -7,7 +7,7 @@ const pokemonReducer = (state = initialState, action) => {
         case "GET_POKEMON": 
             return {
                 ...state,
-            pokemon: [...action.payload]
+            pokemon: action.payload
             }
             case "ADD_MOVES":
                 return {
