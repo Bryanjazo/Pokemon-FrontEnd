@@ -110,6 +110,7 @@ const UserPokemon = (props) => {
                     <p className="pokemon-stat">Special Defense: {props.special_defense}</p>
                     <p className="pokemon-stat">Speed: {props.speed}</p>
                     <p><b>{props.name}'s Moves</b></p>
+                    {props.activeoves.map((m) => <li>{m}</li>)}
                     </div>
                     </Typography>
                     <Typography gutterBottom>

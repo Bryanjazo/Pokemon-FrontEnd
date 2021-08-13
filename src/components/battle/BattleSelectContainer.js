@@ -117,6 +117,7 @@ const BattleSelectContainer = () => {
                                         key={p.pokemon.id}
                                         description={p.pokemon.description}
                                         types={p.pokemon.types}
+                                        activeMoves={p.active_moves}
                                     />
                                 </ul>
                             )

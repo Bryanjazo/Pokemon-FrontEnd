@@ -62,8 +62,6 @@ const PokemonsContainer = () => {
         }
     }
 
-
-
 return (
     <div className="pokemon-page">
     <form className="pokedex-search-form" noValidate autoComplete="off">
