@@ -14,6 +14,8 @@ import BattleSelectContainer from './components/battle/BattleSelectContainer';
 import { getUserPokemon } from './actions/userpokemon';
 import NavBar from './components/Home/navBar.js';
 
+import styledPage from './components/loginComponent/login_page2'
+
 import {FetchOauth} from './actions/authentication.js'
 
 
@@ -29,9 +31,6 @@ function App() {
   const [authenthicated, setAuthenthicated] = useState(false)
 
 console.log(authenthicatedUser)
-
-  
-
 
 
   useEffect(() => {
@@ -56,6 +55,7 @@ console.log(authenthicatedUser)
       <Switch>
         <Route path='/Login' component={SignIn}/>
         <Route path="/SignUp" component={SignUp}/>
+        <Route path='/styled' component={styledPage}/>
           <Route path={authenthicatedUser ? '/Home' : '/'}>
           <NavBar />
           <Home />
@@ -71,6 +71,7 @@ console.log(authenthicatedUser)
       <Route exact path="/">
         {current_user !== '' ?  <Redirect to="/home" /> :  <Redirect to="/Login" />}
       </Route>
+   
       </Switch>
     </Router>
     

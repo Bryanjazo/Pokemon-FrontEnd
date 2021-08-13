@@ -9,6 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 
+
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 
