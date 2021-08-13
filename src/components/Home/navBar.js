@@ -18,7 +18,7 @@ function NavBar(){
   return(
   <nav className="NavbarItems">
     <Link className="cla" to="/">
-    <h1  onClick={clearAnime} className="NavbarLogo changeTitle">AnimeCity<i class="fab fa-fantasy-flight-games"></i></h1>
+    <h1  className="NavbarLogo changeTitle">AnimeCity<i class="fab fa-fantasy-flight-games"></i></h1>
     </Link>
       <div className="MenuItmem" onClick={handleClick}>
         <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
