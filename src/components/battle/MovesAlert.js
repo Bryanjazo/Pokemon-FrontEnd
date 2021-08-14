@@ -50,41 +50,6 @@ const MovesAlert = (props) => {
             )}
           })}
           </div>
-<<<<<<< HEAD
-        {/* <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-      >
-        {props.moves.active_moves.map(m => {
-          return (
-          <Typography className={classes.typography}>
-        <FormControlLabel
-        control={
-          <Checkbox
-            checked={false}
-            onChange={handleMoveSelect}
-            name={m}
-            color="primary"
-          />
-        }
-        label={m}
-      />
-        </Typography>)
-        }
-        )}
-      </Popover> */}
-=======
->>>>>>> origin/main
         </div>
     );
 }

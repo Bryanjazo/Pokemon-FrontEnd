@@ -17,7 +17,7 @@ function NavBar(){
   }
     const handleLogOut = () => {
       dispatch(LogOut())
-      history.replace('/')
+      history.replace('/Login')
     }
 
   return(
