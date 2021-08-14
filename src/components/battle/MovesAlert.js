@@ -31,10 +31,10 @@ const MovesAlert = (props) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleBattleClick = () => {
-    dispatch(setUserMove(props))
+  const handleBattleClick = (m) => {
+
+    dispatch(setUserMove(m))
     dispatch(incrementCounter(turnCount))
-    dispatch(setUserMove(""))
     
   }
 
@@ -52,7 +52,7 @@ const MovesAlert = (props) => {
             if(turnCount%2 === 0){
             return(
               <span className="moveButtons">
-                <button onClick={() => dispatch(() => handleBattleClick())}>{m.name}</button>
+                <button onClick={() => (handleBattleClick(m))}>{m.name}</button>
               </span>
             )}
           })}
