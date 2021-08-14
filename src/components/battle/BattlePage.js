@@ -5,14 +5,18 @@ import './battle.css'
 
 const BattlePage = (props) => {
 
-   
+    
     const [selectedPokemon, setSelectedPokemon] = useState({})
 
 
     useEffect(() => {
         return () => { 
         };
-    }, [selectedPokemon]);
+    }, [selectedPokemon, props.aITeam]);
+
+    const gamePlay = () => {
+
+    }
 
     const handleImageClick = (event) => {
         event.preventDefault()
