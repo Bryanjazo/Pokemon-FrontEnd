@@ -6,6 +6,7 @@ import OpponentSelectedPokemon from './OpponentSelectedPokemon';
 import { incrementCounter } from '../../actions/battle';
 import { useDispatch, useSelector } from 'react-redux';
 import { Place } from '@material-ui/icons';
+import { makeid } from '../../actions/authentication';
 
 const BattlePage = (props) => {
 
@@ -20,6 +21,7 @@ const BattlePage = (props) => {
 
     useEffect(() => {
         return () => { 
+            dispatch(incrementCounter(0))
         };
     }, [selectedPokemon]);
 
@@ -32,8 +34,8 @@ const BattlePage = (props) => {
     }
 
     const gamePlay = () => {
-        let gameEnd = false
         let winner = ""
+        let gameEnd = false
         while (gameEnd === false){
             if (aITeam.length === 1 && selectedAIPokemon.hp === 0){
                 gameEnd = true
@@ -45,31 +47,37 @@ const BattlePage = (props) => {
             }
             let pokemon = checkTurn()
 
-            if(pokemon != selectedAIPokemon){
+            if(turnCount % 2 === 0){
                 if(pokemon.hp === 0){
                     setUserBattleTeam(userBattleTeam.filter((p) => p.id !== pokemon.id))
                     setSelectedPokemon(userBattleTeam[0])
                     pokemon = selectedPokemon
                 }
 
-                if(selectedUserMove != {}){
-                    setSelectedAIPokemon({...selectedAIPokemon, hp: selectedAIPokemon.hp - selectedUserMove.damage})
-                    dispatch(incrementCounter(turnCount))
+                if(selectedUserMove != ""){
+                    let statChange = selectedAIPokemon.hp - selectedUserMove.power
+                    setSelectedAIPokemon({...selectedAIPokemon, hp: statChange})
                 }
             } 
-            else {
+            else if(turnCount % 2 === 1) {
                 if(pokemon.hp === 0 && aITeam.length > 1){
                     setAITeam(aITeam.filter((p) => p.id !== pokemon.id))
                     setSelectedAIPokemon(aITeam[0])
                     pokemon = selectedAIPokemon
                 }   
-                let randomNum = Math.floor((Math.random * pokemon.moves.length)) 
+    
+                let randomNum = Math.floor((Math.random() * parseInt(pokemon.moves.length))) 
                 let chosenMove = pokemon.moves[randomNum]
-                setSelectedPokemon({...selectedPokemon, hp: selectedPokemon.hp - chosenMove.damage})
+                {debugger}
+                let statChange = selectedPokemon.hp - chosenMove.power
+                setSelectedPokemon({...selectedPokemon, pokemon: {...pokemon, hp: statChange}})
                 dispatch(incrementCounter(turnCount))
 
             }
+            
+            gameEnd = true
         }
+
     }
 
     const handleImageClick = (event) => {
@@ -112,10 +120,12 @@ const BattlePage = (props) => {
             </div>
             </div> 
         </div>
-        {selectedPokemon.pokemon ? <MovesAlert key={selectedPokemon.uid + selectedPokemon.name} selectedPokemon={selectedPokemon}/> : null}
+        {selectedPokemon.pokemon ? <MovesAlert key={() => makeid(20)} selectedPokemon={selectedPokemon}/> : null}
         {selectedPokemon.pokemon ? <OpponentSelectedPokemon selectedAIPokemon={selectedAIPokemon}/> : null}
+        {gamePlay()}
         </>
     );
 }
+
 
 export default BattlePage;

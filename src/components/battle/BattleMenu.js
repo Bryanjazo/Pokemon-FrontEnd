@@ -31,7 +31,7 @@ export default function BattleMenu(props) {
   const bull = <span className={classes.bullet}>•</span>;
   const dispatch = useDispatch()
   const user = useSelector(state => state.userReducer.details)
-
+const test = false
   useEffect(() => {
     return () => {
       
