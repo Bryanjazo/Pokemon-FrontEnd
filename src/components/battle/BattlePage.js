@@ -3,7 +3,7 @@ import BattleMenu from './BattleMenu';
 import MovesAlert from './MovesAlert';
 import './battle.css'
 import OpponentSelectedPokemon from './OpponentSelectedPokemon';
-import { incrementCounter } from '../../actions/battle';
+import { incrementCounter, setUserMove } from '../../actions/battle';
 import { useDispatch, useSelector } from 'react-redux';
 import { Place } from '@material-ui/icons';
 import { makeid } from '../../actions/authentication';
@@ -20,10 +20,8 @@ const BattlePage = (props) => {
     let selectedUserMove = useSelector(state => state.battleReducer.selectedUserMove)
 
     useEffect(() => {
-        return () => { 
-            dispatch(incrementCounter(0))
-        };
-    }, [selectedPokemon]);
+        gamePlay()
+    }, [turnCount]);
 
     const checkTurn = () =>{
         if (turnCount % 2 === 0){
@@ -37,40 +35,50 @@ const BattlePage = (props) => {
         let winner = ""
         let gameEnd = false
         while (gameEnd === false){
-            if (aITeam.length === 1 && selectedAIPokemon.hp === 0){
+            if (aITeam.length === 1 && selectedAIPokemon.hp <= 0){
                 gameEnd = true
                 winner = "player"
             }
-            if (userBattleTeam.length === 1 && selectedPokemon.hp === 0){
+            if (userBattleTeam.length === 1 && selectedPokemon.hp <= 0){
                 gameEnd = true
                 winner = "AI"
             }
+
+            if (selectedPokemon.pokemon.hp <= 0){
+                setUserBattleTeam(userBattleTeam.filter((p) => p.id !== selectedPokemon.pokemon.id))
+                setSelectedPokemon(userBattleTeam[0])
+            }
+
+            if (selectedAIPokemon.hp <= 0){
+                setAITeam(aITeam.filter((p) => p.id !== selectedAIPokemon.id))
+            }
             let pokemon = checkTurn()
 
-            if(turnCount % 2 === 0){
-                if(pokemon.hp === 0){
-                    setUserBattleTeam(userBattleTeam.filter((p) => p.id !== pokemon.id))
+            if(turnCount % 2 == 0){
+                if(selectedPokemon.pokemon.hp <= 0){
+                    setUserBattleTeam(userBattleTeam.filter((p) => p.id !== selectedPokemon.pokemon.id))
                     setSelectedPokemon(userBattleTeam[0])
-                    pokemon = selectedPokemon
+                    
                 }
 
                 if(selectedUserMove != ""){
                     let statChange = selectedAIPokemon.hp - selectedUserMove.power
+      
                     setSelectedAIPokemon({...selectedAIPokemon, hp: statChange})
+                    dispatch(setUserMove(""))
                 }
-            } 
-            else if(turnCount % 2 === 1) {
-                if(pokemon.hp === 0 && aITeam.length > 1){
-                    setAITeam(aITeam.filter((p) => p.id !== pokemon.id))
+            } else if(turnCount % 2 != 0) {
+                if(selectedAIPokemon.hp <= 0 && aITeam.length > 1){
+                    {debugger}
+                    setAITeam(aITeam.filter((p) => p.id !== selectedAIPokemon.id))
                     setSelectedAIPokemon(aITeam[0])
-                    pokemon = selectedAIPokemon
+        
                 }   
     
                 let randomNum = Math.floor((Math.random() * parseInt(pokemon.moves.length))) 
-                let chosenMove = pokemon.moves[randomNum]
-                {debugger}
-                let statChange = selectedPokemon.hp - chosenMove.power
-                setSelectedPokemon({...selectedPokemon, pokemon: {...pokemon, hp: statChange}})
+                let chosenMove = selectedAIPokemon.moves[randomNum]
+                let statChange = selectedPokemon.pokemon.hp - chosenMove.power
+                setSelectedPokemon({...selectedPokemon, pokemon: {...selectedPokemon.pokemon, hp: statChange}})
                 dispatch(incrementCounter(turnCount))
 
             }
@@ -122,7 +130,7 @@ const BattlePage = (props) => {
         </div>
         {selectedPokemon.pokemon ? <MovesAlert key={() => makeid(20)} selectedPokemon={selectedPokemon}/> : null}
         {selectedPokemon.pokemon ? <OpponentSelectedPokemon selectedAIPokemon={selectedAIPokemon}/> : null}
-        {gamePlay()}
+
         </>
     );
 }

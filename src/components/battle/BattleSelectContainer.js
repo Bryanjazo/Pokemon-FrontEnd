@@ -97,7 +97,7 @@ const BattleSelectContainer = () => {
                                 <ul className="user-pokemon">
                                     <li><button id={p.id} onClick={handleClick}>Select</button><br></br></li>
                                     <UserPokemon
-                                        key={() => makeid(20)}
+                                        key={makeid(20)}
                                         name={p.pokemon.name}
                                         id={p.id}
                                         frontImage={p.pokemon.front_image}
