@@ -1,5 +1,6 @@
 const initialState = {
-    turnCount: 0
+    turnCount: 0,
+    selectedUserMove: {}
 }
 
 const battleReducer = (state = initialState, action) => {
@@ -14,6 +15,11 @@ const battleReducer = (state = initialState, action) => {
             return{
                 ...state,
                 turnCount: 0
+            }
+        case "SET_CURRENT_USER_MOVE":
+            return {
+                ...state,
+                selectedUserMove: action.payload
             }
         default:
             return state

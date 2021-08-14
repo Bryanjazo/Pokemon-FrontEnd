@@ -7,3 +7,12 @@ export const incrementCounter = (turnCount) => {
         })
     }
 }
+
+export const setUserMove = (move) => {
+    return(dispatch) => {
+        dispatch({
+        type: "SET_CURRENT_USER_MOVE",
+        payload: move
+    })
+    }
+}
