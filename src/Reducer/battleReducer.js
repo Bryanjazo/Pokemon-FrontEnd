@@ -1,15 +1,14 @@
 const initialState = {
     turnCount: 0,
-    selectedUserMove: {}
+    selectedUserMove: ""
 }
 
 const battleReducer = (state = initialState, action) => {
     switch (action.type) {
         case "TURN_INCREMENT":
-            debugger
             return {
                 ...state,
-            turnCount: action.payload
+            turnCount: action.payload + 1
           }
         case "CLEAR_TURN_COUNT":
             return{

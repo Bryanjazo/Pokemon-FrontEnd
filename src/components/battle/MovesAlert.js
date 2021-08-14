@@ -33,6 +33,9 @@ const MovesAlert = (props) => {
 
   const handleBattleClick = () => {
     dispatch(setUserMove(props))
+    dispatch(incrementCounter(turnCount))
+    dispatch(setUserMove(""))
+    
   }
 
   const handleClose = () => {

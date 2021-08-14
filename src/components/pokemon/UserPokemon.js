@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import { addPokemonToUser } from '../../actions/userpokemon';
 import { useSelector } from 'react-redux';
+import { makeid } from '../../actions/authentication';
 
 
 
@@ -82,9 +83,9 @@ const UserPokemon = (props) => {
 
     };
 
-
     return (
-        <li key={props.uid} >
+        
+        <li >
             <b>{props.name}</b><br />
             <img src={props.frontImage} onClick={handleClickOpen}></img><br /><br/>
             {`Tier: ${props.tier}`}

@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const OpponentSelectedPokemon = (props) => {
-  debugger
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [move, setMove] = React.useState({})
