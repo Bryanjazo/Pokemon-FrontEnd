@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MovesAlert = (props) => {
-  debugger
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [move, setMove] = React.useState({})
@@ -74,7 +73,7 @@ const MovesAlert = (props) => {
         label={m}
       />
         </Typography>)
-        } 
+        }
         )}
       </Popover> */}
         </div>

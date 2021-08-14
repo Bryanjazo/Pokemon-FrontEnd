@@ -25,20 +25,20 @@ function App() {
   const userOauth = localStorage.token
   const [authenthicated, setAuthenthicated] = useState(false)
 
-
+console.log(pokemon)
 
   useEffect(() => {
     if (pokemon.length === 0) dispatch(getPokemon())
     dispatch(getMoves())
     if(userOauth){
-      dispatch(fetchOauth(userOauth))
-      setAuthenthicated(true)
 
+      dispatch(fetchOauth(userOauth))
+
+      setAuthenthicated(true)
     }else{
       <Redirect to="/Login"></Redirect>
-      alert("Please Sign In")
     }
-  }, [pokemon]);
+  }, []);
 
 
   console.log("User authenthication:", user)

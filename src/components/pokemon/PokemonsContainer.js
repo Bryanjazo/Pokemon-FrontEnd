@@ -34,10 +34,7 @@ const PokemonsContainer = () => {
 
 
       useEffect(() => {
-<<<<<<< HEAD
-=======
         dispatch(getUserPokemon(user.id))
->>>>>>> origin/main
         if (filteredPokemon.length === 0 && tier == "" && pokemonName == ""){
          setFilteredPokemon(pokemon)
         }

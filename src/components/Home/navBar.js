@@ -2,23 +2,28 @@ import React, {useState} from 'react';
 import {LogOut} from '../../actions/authentication.js'
 import {useDispatch,useSelector} from 'react-redux'
 import {useHistory,Link} from 'react-router-dom'
+import {Button} from './Button.js'
 // import {clearAnimeHome, setUser} from '../Redux/reducerRedux.js'
-// import './Navbar.css'
+import './navBar.css'
 
 function NavBar(){
-
-  const {user} = useSelector((state) => state.anime)
+  const history = useHistory()
   const [clicked, setClicked] = useState(false)
   const dispatch = useDispatch()
+  let user = useSelector(state => state.userReducer.details)
   const handleClick = (e) =>{
     e.preventDefault()
     setClicked(!clicked)
   }
+    const handleLogOut = () => {
+      dispatch(LogOut())
+      history.replace('/')
+    }
 
   return(
   <nav className="NavbarItems">
     <Link className="cla" to="/">
-    <h1  className="NavbarLogo changeTitle">AnimeCity<i class="fab fa-fantasy-flight-games"></i></h1>
+    <h1  className="NavbarLogo changeTitle">Pokemon<i class="fab fa-fantasy-flight-games"></i></h1>
     </Link>
       <div className="MenuItmem" onClick={handleClick}>
         <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
@@ -30,18 +35,10 @@ function NavBar(){
         <Link className="nav-links" to="/Home">
             Home
         </Link>
-          <Link className="nav-links" to="/Shows">
-            Shows
 
-        </Link>
-          <Link className="nav-links" to="/Favorites">
-            Favorites
-        </Link>
-          {user !== null ? <Link className="nav-links" to="/Profile">Profile</Link> : ''}
-
-
-          <Link className="nav-links" to="/Premium">
-            Premium
+          {user !== null ? <Link className="nav-links" to="/Pokemon">Pokemon</Link> : ''}
+          <Link className="nav-links" to="/Battle">
+            Battle
           </Link>
         </li>
     </ul>

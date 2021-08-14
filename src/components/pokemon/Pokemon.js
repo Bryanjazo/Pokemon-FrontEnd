@@ -12,25 +12,21 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import { addPokemonToUser, getUserPokemon, subtractTokensFromUser } from '../../actions/userpokemon';
 import { useSelector } from 'react-redux';
-<<<<<<< HEAD
+
 import { getPokemon } from '../../actions/pokemon.js';
 
-=======
+
 import { Select } from '@material-ui/core';
->>>>>>> origin/main
+
 
 
 const Pokemon = (props) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(state => state.userReducer.details)
-<<<<<<< HEAD
-    const pokemon = useSelector(state => state.pokemonReducer.pokemon)
-=======
     const [localMoves, setLocalMoves] = useState([]);
     const userPokemon = useSelector(state => state.userReducer.userPokemon)
-    
->>>>>>> origin/main
+
 
 
     const subtractTokens = () => {
@@ -46,11 +42,6 @@ const Pokemon = (props) => {
         setLocalMoves([])
       }
 
-<<<<<<< HEAD
-
-
-
-=======
     const coinCheck = () => {
         if (props.pokemon.tier === 1 && user.tokens < 20) return true
         if (props.pokemon.tier === 2 && user.tokens < 50) return true
@@ -60,9 +51,8 @@ const Pokemon = (props) => {
       const handleDisablePurchase = () => {
             if(localMoves.length === 0 || coinCheck()) return true
             return false
-            
+
       }
->>>>>>> origin/main
 
     const onCheckMove = (event, m) => {
         if(event.target.checked === true){
@@ -103,7 +93,7 @@ const Pokemon = (props) => {
         );
     });
     useEffect(() => {
-        
+
     }, [userPokemon]);
 
     const DialogContent = withStyles((theme) => ({
@@ -153,7 +143,7 @@ const Pokemon = (props) => {
                     <Typography gutterBottom>
                     <div className={`pokemon-dialogue-info`}>
                     <h3>{props.pokemon.name}</h3>
-                    <h3>{`Pokedex #${props.pokemon.uid}`}</h3>  
+                    <h3>{`Pokedex #${props.pokemon.uid}`}</h3>
                     <h5>Type: {props.pokemon.types.join("    ")}</h5>
                     <p className="pokemon-description">{props.pokemon.description}</p>
                     <p className="pokemon-stat">Attack: {props.pokemon.attack}</p>
@@ -163,7 +153,7 @@ const Pokemon = (props) => {
                     <p className="pokemon-stat">Speed: {props.pokemon.speed}</p>
                     <p><b>{props.pokemon.name}'s Moves</b></p>
                     <ul className={`pokemon-moves`}>
-                        {props.pokemon.moves.map((m) => <li><b>{m.name}</b>{` Power: ${m.power} Type: ${m.pokemon_type}  `}<input checked={localMoves.find((move) => move === m.name)} onChange={(event) => onCheckMove(event, m)} disabled= {localMoves.length >= 4 ? true : false}  type="checkbox"/></li>)}           
+                        {props.pokemon.moves.map((m) => <li><b>{m.name}</b>{` Power: ${m.power} Type: ${m.pokemon_type}  `}<input checked={localMoves.find((move) => move === m.name)} onChange={(event) => onCheckMove(event, m)} disabled= {localMoves.length >= 4 ? true : false}  type="checkbox"/></li>)}
                     </ul>
                     </div>
                     </Typography>
