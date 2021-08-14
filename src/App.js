@@ -13,7 +13,7 @@ import BattleSelectContainer from './components/battle/BattleSelectContainer';
 import NavBar from './components/Home/navBar.js';
 import {fetchOauth} from './actions/authentication.js'
 import { getMoves } from './actions/moves';
-
+import {useHistory,Link} from 'react-router-dom'
 
 function App() {
 
@@ -24,20 +24,19 @@ function App() {
   const dispatch = useDispatch()
   const userOauth = localStorage.token
   const [authenthicated, setAuthenthicated] = useState(false)
-
-console.log(pokemon)
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(getMoves())
     dispatch(getPokemon())
 
-    if(userOauth){
-
-      dispatch(fetchOauth(userOauth))
-
-      setAuthenthicated(true)
+    if(user === []){
+      debugger
+        dispatch(fetchOauth(userOauth))
+        setAuthenthicated(true)
     }else{
-      <Redirect to="/Login"></Redirect>
+      history.push('/')
+
     }
   }, []);
 
