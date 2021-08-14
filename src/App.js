@@ -34,8 +34,9 @@ console.log(authenthicatedUser)
 
 
   useEffect(() => {
-    if (pokemon.length === 0) dispatch(getPokemon())
     dispatch(getMoves())
+    dispatch(getPokemon())
+
     if(userOauth){
       dispatch(fetchOauth(userOauth))
       setAuthenthicated(true)

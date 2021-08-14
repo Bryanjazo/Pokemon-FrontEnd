@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOauth } from '../../actions/authentication';
+import { getMoves } from '../../actions/moves';
+import { getPokemon } from '../../actions/pokemon';
 import { getUserPokemon } from '../../actions/userpokemon';
 import UserPokemon from '../pokemon/UserPokemon';
 import BattlePage from './BattlePage';
@@ -12,20 +14,18 @@ const BattleSelectContainer = () => {
     const [count, setCount] = useState(0)
     const [battleTime, setBattleTime] = useState(false)
     const pokemon = useSelector(state => state.pokemonReducer.pokemon)
-    const user = useSelector(state => state.userReducer.details)
     const userPokemon = useSelector(state => state.userReducer.userPokemon)
     const moves = useSelector(state => state.movesReducer.moves)
 
 
     useEffect(() => {
 
-
-    }, [battlePokemon, userPokemon]);
+    }, [battlePokemon, userPokemon, moves, pokemon]);
 
 
 
     const createAITeam = (p, i) => {
-        if (p.pokemon) {
+        if (pokemon.length > 0 && p.pokemon) {
             let filteredPokemon = pokemon.filter(poke => poke.tier === p.pokemon.tier)
             let randomNumber = Math.floor(Math.random() * filteredPokemon.length)
             aIPokemon[i] = filteredPokemon[randomNumber]
@@ -78,7 +78,7 @@ const BattleSelectContainer = () => {
         return (
             <>
                 <h1>Select Team</h1><br></br>
-                {battlePokemon[0].id !== undefined ? <div className="battle-button"><button onClick={handleBattleClick}>BATTLE!</button></div> : null}
+                {battlePokemon[0].id !== undefined ? <div className="battle-button"><button disabled={!(pokemon.length > 0)} onClick={handleBattleClick}>BATTLE!</button></div> : null}
                 <div className="battle-select-pokemon">
                     {battlePokemon.map(p => {
                         if (p.pokemon && p.pokemon.front_image) {
@@ -104,6 +104,7 @@ const BattleSelectContainer = () => {
                                 <ul className="user-pokemon">
                                     <li><button id={p.id} onClick={handleClick}>Select</button><br></br></li>
                                     <UserPokemon
+                                    key={p.pokemon.name}
                                         name={p.pokemon.name}
                                         id={p.id}
                                         frontImage={p.pokemon.front_image}
@@ -117,6 +118,7 @@ const BattleSelectContainer = () => {
                                         key={p.pokemon.id}
                                         description={p.pokemon.description}
                                         types={p.pokemon.types}
+                                        activeMoves={p.active_moves}
                                     />
                                 </ul>
                             )

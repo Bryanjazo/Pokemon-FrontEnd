@@ -26,6 +26,8 @@ div.battle-select-pokemon {
     margin:auto;
 }
 
+
+
 ul.user-pokemon {
     list-style: none;
     text-align: center;
@@ -95,4 +97,16 @@ div.selected-pokemon img {
     width: 300px;
     height: 300px;
     padding-right: 300px;
+}
+
+div.selected-ai-pokemon img {
+    width: 200px;
+    height: 200px;
+}
+
+div.selected-ai-pokemon {
+    bottom: 850px;
+    left: 225px;
+    position: relative;
+    text-align: center;
 }

@@ -2,34 +2,83 @@ import React, { useEffect, useState } from 'react';
 import BattleMenu from './BattleMenu';
 import MovesAlert from './MovesAlert';
 import './battle.css'
+import OpponentSelectedPokemon from './OpponentSelectedPokemon';
+import { incrementCounter } from '../../actions/battle';
+import { useDispatch, useSelector } from 'react-redux';
 
 const BattlePage = (props) => {
-    const renderMoveFromStringToObject = (array, p) =>{
-        for(let i in array){
-            let move = p.moves.find((m) => m.name === array[i])
-            array[i] = move
-        }
-    }
-    const [selectedPokemon, setSelectedPokemon] = useState(props.userBattleTeam[0])
+
+    const [winCheck, setWinCheck] = useState(props.aITeam)
+    const [userBattleTeam, setUserBattleTeam] = useState(props.userBattleTeam)
+    const [aITeam, setAITeam] = useState(props.aITeam)
+    const [selectedPokemon, setSelectedPokemon] = useState(userBattleTeam[0])
+    const [selectedAIPokemon, setSelectedAIPokemon] = useState(aITeam[0])
+    let turnCount = useSelector(state => state.battleReducer.turnCount)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         return () => { 
         };
     }, [selectedPokemon]);
 
+    const checkTurn = () =>{
+        if (turnCount % 2 === 0){
+            return selectedPokemon
+        } else {
+            return selectedAIPokemon
+        }
+    }
+
+    const gamePlay = () => {
+        let gameEnd = false
+        let winner = ""
+        while (gameEnd === false){
+            if (aITeam.length === 1 && selectedAIPokemon.hp === 0){
+                gameEnd = true
+                winner = "player"
+            }
+            if (userBattleTeam.length === 1 && selectedPokemon.hp === 0){
+                gameEnd = true
+                winner = "AI"
+            }
+            let pokemon = checkTurn()
+
+            if(pokemon != selectedAIPokemon){
+                if(pokemon.hp === 0){
+                    setUserBattleTeam(userBattleTeam.filter((p) => p.id !== pokemon.id))
+                    setSelectedPokemon(userBattleTeam[0])
+                    pokemon = selectedPokemon
+                }
+            } 
+            else {
+                if(pokemon.hp === 0 && aITeam.length > 1){
+                    setAITeam(aITeam.filter((p) => p.id !== pokemon.id))
+                    setSelectedAIPokemon(aITeam[0])
+                    pokemon = selectedAIPokemon
+                }
+
+
+            }
+
+
+            dispatch(incrementCounter(turnCount++))
+        }
+    }
+
     const handleImageClick = (event) => {
         event.preventDefault()
         setSelectedPokemon(props.userBattleTeam[event.target.id])
+        dispatch(incrementCounter(turnCount++))
     }
     return (
         <>
         <div className="battle-page">
         <div className="battle-menus">
             <div className="user-battle-menu">
-                {<BattleMenu userTeam={props.userBattleTeam}/>}
+                {<BattleMenu userTeam={props.userTeam} selectedPokemon={selectedPokemon.pokemon}/>}
             </div>  
             <div className="ai-battle-menu">
-                {<BattleMenu aITeam={props.aITeam} selectedPokemon={selectedPokemon}/>}
+                {<BattleMenu selectedPokemon={selectedAIPokemon}/>}
             </div>
         </div> 
         <div className="teams">    
@@ -46,7 +95,9 @@ const BattlePage = (props) => {
             <div className="ai-battle-team">
             <h3>Challengers</h3>
                 {props.aITeam.map((p, index) => {
-                    return (
+                    if (selectedAIPokemon.id === p.id) return (<p></p>)
+
+                    else return (
                         <img id={index} src={p.front_image} onClick={handleImageClick}/>
                     )
                     }
@@ -54,7 +105,8 @@ const BattlePage = (props) => {
             </div>
             </div> 
         </div>
-        {selectedPokemon.pokemon ? <MovesAlert selectedPokemon={selectedPokemon}/> : null}
+        {selectedPokemon.pokemon ? <MovesAlert key={selectedPokemon.uid + selectedPokemon.name} selectedPokemon={selectedPokemon}/> : null}
+        {selectedPokemon.pokemon ? <OpponentSelectedPokemon selectedAIPokemon={selectedAIPokemon}/> : null}
         </>
     );
 }
