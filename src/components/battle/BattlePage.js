@@ -4,18 +4,19 @@ import MovesAlert from './MovesAlert';
 import './battle.css'
 
 const BattlePage = (props) => {
-    const renderMoveFromStringToObject = (array, p) =>{
-        for(let i in array){
-            let move = p.moves.find((m) => m.name === array[i])
-            array[i] = move
-        }
-    }
-    const [selectedPokemon, setSelectedPokemon] = useState(props.userBattleTeam[0])
+
+    
+    const [selectedPokemon, setSelectedPokemon] = useState({})
+
 
     useEffect(() => {
         return () => { 
         };
-    }, [selectedPokemon]);
+    }, [selectedPokemon, props.aITeam]);
+
+    const gamePlay = () => {
+
+    }
 
     const handleImageClick = (event) => {
         event.preventDefault()
