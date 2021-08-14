@@ -23,7 +23,7 @@ const PokemonsContainer = () => {
     const dispatch = useDispatch()
     const pokemon = useSelector(state => state.pokemonReducer.pokemon)
     const [tier, setTier] = React.useState('');
-    const [filteredPokemon, setFilteredPokemon] = React.useState([])
+    const [filteredPokemon, setFilteredPokemon] = React.useState(pokemon)
     const [pokemonName, setPokemonName] = React.useState("")
     const user = useSelector(state => state.userReducer.details)
     const userPokemon = useSelector(state => state.userReducer.userPokemon)
@@ -42,7 +42,7 @@ const PokemonsContainer = () => {
           return () => {
 
           };
-      }, [pokemon, tier, pokemonName]);
+      }, [pokemon, tier, pokemonName, filteredPokemon]);
 
     const handleNameChange = async (event) => {
         setPokemonName(event.target.value)
@@ -61,9 +61,6 @@ const PokemonsContainer = () => {
             setFilteredPokemon(pokemon.filter((pokemon) => pokemon.tier === tier && pokemon.name.toLowerCase().includes(pokemonName.toLowerCase())))
         }
     }
-
-
-
 return (
     <div className="pokemon-page">
     <form className="pokedex-search-form" noValidate autoComplete="off">

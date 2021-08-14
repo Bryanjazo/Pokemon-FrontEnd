@@ -1,4 +1,11 @@
-export const addPokemonToUser = (user_id, pokemon_id, active_moves) => {
+const subtractTokens = (tier, tokens ) => {
+    if (tier === 1) return tokens - 20
+    if (tier === 2) return  tokens - 50
+    if (tier === 3) return  tokens - 100
+}
+
+export const addPokemonToUser = (user_id, pokemon_id, active_moves, tokens, tier) => {
+    let subtracted = subtractTokens(tier, tokens)
     return (dispatch) => {
         fetch(`http://localhost:8080/api/v1/users/${user_id}/user_pokemons`, {
             method: 'POST',
@@ -18,7 +25,7 @@ export const addPokemonToUser = (user_id, pokemon_id, active_moves) => {
                     type: "ADD_USER_POKEMON",
                     payload: data
                 })
-                dispatch(subtractTokensFromUser())
+                dispatch(subtractTokensFromUser(subtracted))
             }
         })
         

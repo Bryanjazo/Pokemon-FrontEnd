@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOauth } from '../../actions/authentication';
+import { getMoves } from '../../actions/moves';
 import { getUserPokemon } from '../../actions/userpokemon';
 import UserPokemon from '../pokemon/UserPokemon';
 import BattlePage from './BattlePage';
@@ -12,15 +13,14 @@ const BattleSelectContainer = () => {
     const [count, setCount] = useState(0)
     const [battleTime, setBattleTime] = useState(false)
     const pokemon = useSelector(state => state.pokemonReducer.pokemon)
-    const user = useSelector(state => state.userReducer.details)
     const userPokemon = useSelector(state => state.userReducer.userPokemon)
     const moves = useSelector(state => state.movesReducer.moves)
 
 
     useEffect(() => {
+        dispatch(getMoves())
 
-
-    }, [battlePokemon, userPokemon]);
+    }, [battlePokemon, userPokemon, moves]);
 
 
 
@@ -28,8 +28,8 @@ const BattleSelectContainer = () => {
         if (p.pokemon) {
             let filteredPokemon = pokemon.filter(poke => poke.tier === p.pokemon.tier)
             let randomNumber = Math.floor(Math.random() * filteredPokemon.length)
-            aIPokemon[i] = filteredPokemon[randomNumber]
-            let totalMoves = aIPokemon[i]["moves"]
+            aIPokemon.push(filteredPokemon[randomNumber])
+            let totalMoves = aIPokemon[aIPokemon.length - 1]["moves"]
             let activeMoves = []
             let count = 0
             while (count < 4) {
@@ -117,6 +117,7 @@ const BattleSelectContainer = () => {
                                         key={p.pokemon.id}
                                         description={p.pokemon.description}
                                         types={p.pokemon.types}
+                                        activeMoves={p.active_moves}
                                     />
                                 </ul>
                             )
