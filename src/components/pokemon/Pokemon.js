@@ -148,7 +148,7 @@ const Pokemon = (props) => {
                     <p className="pokemon-stat">Speed: {props.pokemon.speed}</p>
                     <p><b>{props.pokemon.name}'s Moves</b></p>
                     <ul className={`pokemon-moves`}>
-                        {props.pokemon.moves_names_only.map((m) => <li><b>{m.name}</b>{` Power: ${m.power} Type: ${m.pokemon_type}  `}<input checked={localMoves.find((move) => move === m.name)} onChange={(event) => onCheckMove(event, m)} disabled= {localMoves.length >= 4 ? true : false}  type="checkbox"/></li>)}           
+                        {props.pokemon.moves.map((m) => <li><b>{m.name}</b>{` Power: ${m.power} Type: ${m.pokemon_type}  `}<input checked={localMoves.find((move) => move === m.name)} onChange={(event) => onCheckMove(event, m)} disabled= {localMoves.length >= 4 ? true : false}  type="checkbox"/></li>)}           
                     </ul>
                     </div>
                     </Typography>
