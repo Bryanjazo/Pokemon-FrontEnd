@@ -5,7 +5,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { incrementCounter } from '../../actions/battle';
+import { incrementCounter, setUserMove } from '../../actions/battle';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +31,10 @@ const MovesAlert = (props) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleBattleClick = () => {
+    dispatch(setUserMove(props))
+  }
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -45,7 +49,7 @@ const MovesAlert = (props) => {
             if(turnCount%2 === 0){
             return(
               <span className="moveButtons">
-                <button onClick={() => dispatch(incrementCounter(turnCount))}>{m.name}</button>
+                <button onClick={() => dispatch(() => handleBattleClick())}>{m.name}</button>
               </span>
             )}
           })}

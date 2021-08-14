@@ -5,6 +5,7 @@ import './battle.css'
 import OpponentSelectedPokemon from './OpponentSelectedPokemon';
 import { incrementCounter } from '../../actions/battle';
 import { useDispatch, useSelector } from 'react-redux';
+import { Place } from '@material-ui/icons';
 
 const BattlePage = (props) => {
 
@@ -15,6 +16,7 @@ const BattlePage = (props) => {
     const [selectedAIPokemon, setSelectedAIPokemon] = useState(aITeam[0])
     let turnCount = useSelector(state => state.battleReducer.turnCount)
     const dispatch = useDispatch()
+    let selectedUserMove = useSelector(state => state.battleReducer.selectedUserMove)
 
     useEffect(() => {
         return () => { 
@@ -49,26 +51,31 @@ const BattlePage = (props) => {
                     setSelectedPokemon(userBattleTeam[0])
                     pokemon = selectedPokemon
                 }
+
+                if(selectedUserMove != {}){
+                    setSelectedAIPokemon({...selectedAIPokemon, hp: selectedAIPokemon.hp - selectedUserMove.damage})
+                    dispatch(incrementCounter(turnCount))
+                }
             } 
             else {
                 if(pokemon.hp === 0 && aITeam.length > 1){
                     setAITeam(aITeam.filter((p) => p.id !== pokemon.id))
                     setSelectedAIPokemon(aITeam[0])
                     pokemon = selectedAIPokemon
-                }
-
+                }   
+                let randomNum = Math.floor((Math.random * pokemon.moves.length)) 
+                let chosenMove = pokemon.moves[randomNum]
+                setSelectedPokemon({...selectedPokemon, hp: selectedPokemon.hp - chosenMove.damage})
+                dispatch(incrementCounter(turnCount))
 
             }
-
-
-            dispatch(incrementCounter(turnCount++))
         }
     }
 
     const handleImageClick = (event) => {
         event.preventDefault()
         setSelectedPokemon(props.userBattleTeam[event.target.id])
-        dispatch(incrementCounter(turnCount++))
+        dispatch(incrementCounter(turnCount))
     }
     return (
         <>

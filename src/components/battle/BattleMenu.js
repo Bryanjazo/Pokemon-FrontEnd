@@ -36,7 +36,7 @@ export default function BattleMenu(props) {
     return () => {
       
     };
-  }, []);
+  }, [props.selectedPokemon.hp, props.selectedPokemon.name]);
 
   return (
     <Card className={classes.root} variant="outlined">
