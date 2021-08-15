@@ -20,7 +20,7 @@ const BattlePage = (props) => {
     let selectedUserMove = useSelector(state => state.battleReducer.selectedUserMove)
 
     useEffect(() => {
-        gamePlay()
+        
     }, [turnCount, aITeam]);
 
     const checkTurn = () =>{
@@ -31,10 +31,19 @@ const BattlePage = (props) => {
         }
     }
 
+    const coinMultiplier = () => {
+        let coinTotal = 0
+        for (let i in props.winCheck){
+            if(props.winCheck[i].tier === 1) coinTotal += 10
+            if(props.winCheck[i].tier === 2) coinTotal += 20
+            if(props.winCheck[i].tier === 3) coinTotal += 30
+        }
+    }
+
     const gamePlay = () => {
         let winner = ""
         let gameEnd = false
-        while (gameEnd === false){
+
             if (!aITeam[0].name && selectedAIPokemon.hp <= 0){
                 gameEnd = true
                 winner = "player"
@@ -111,10 +120,6 @@ const BattlePage = (props) => {
                     // setSelectedPokemon(userBattleTeam[0]) 
                 }
             }
-            
-            gameEnd = true
-        }
-
     }
 
     const handleImageClick = (event) => {
@@ -160,6 +165,7 @@ const BattlePage = (props) => {
         {selectedPokemon.pokemon ? <MovesAlert key={() => makeid(20)} selectedPokemon={selectedPokemon}/> : null}
         
         {selectedPokemon.pokemon ? <OpponentSelectedPokemon selectedAIPokemon={selectedAIPokemon}/> : null}
+        {gamePlay()}
         </>
     );
 }
