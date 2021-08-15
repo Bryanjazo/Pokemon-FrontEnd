@@ -31,12 +31,12 @@ export default function BattleMenu(props) {
   const bull = <span className={classes.bullet}>•</span>;
   const dispatch = useDispatch()
   const user = useSelector(state => state.userReducer.details)
-
+const test = false
   useEffect(() => {
     return () => {
       
     };
-  }, []);
+  }, [props.selectedPokemon.hp, props.selectedPokemon.name]);
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -45,9 +45,8 @@ export default function BattleMenu(props) {
           {props.userTeam ? "My Stats" : "Challenger Stats"}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Pokemon's Name: <br></br>
-          Pokemon Current Health: <br></br>
-          Current Move:
+          Pokemon's Name: {props.selectedPokemon.name}<br></br>
+          Pokemon Current Health: {props.selectedPokemon.hp}<br></br>
         </Typography>
       </CardContent>
       <CardActions>

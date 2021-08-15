@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOauth } from '../../actions/authentication';
+import { fetchOauth, makeid } from '../../actions/authentication';
 import { getMoves } from '../../actions/moves';
+import { getPokemon } from '../../actions/pokemon';
 import { getUserPokemon } from '../../actions/userpokemon';
 import UserPokemon from '../pokemon/UserPokemon';
 import BattlePage from './BattlePage';
@@ -18,18 +19,17 @@ const BattleSelectContainer = () => {
 
 
     useEffect(() => {
-        dispatch(getMoves())
 
-    }, [battlePokemon, userPokemon, moves]);
+    }, [battlePokemon, userPokemon, moves, pokemon]);
 
 
 
     const createAITeam = (p, i) => {
-        if (p.pokemon) {
+        if (pokemon.length > 0 && p.pokemon) {
             let filteredPokemon = pokemon.filter(poke => poke.tier === p.pokemon.tier)
             let randomNumber = Math.floor(Math.random() * filteredPokemon.length)
-            aIPokemon.push(filteredPokemon[randomNumber])
-            let totalMoves = aIPokemon[aIPokemon.length - 1]["moves"]
+            aIPokemon[i] = filteredPokemon[randomNumber]
+            let totalMoves = aIPokemon[i]["moves"]
             let activeMoves = []
             let count = 0
             while (count < 4) {
@@ -47,13 +47,6 @@ const BattleSelectContainer = () => {
         for (let i = 0; i < battlePokemon.length; i++) {
             createAITeam(battlePokemon[i], i)
         }
-    }
-    const renderMoveFromStringToObject = (array, p) => {
-        for (let i in array) {
-            let move = p.moves.find((m) => m.name === array[i])
-            array[i] = move
-        }
-
     }
 
     const handleClick = (event) => {
@@ -78,7 +71,7 @@ const BattleSelectContainer = () => {
         return (
             <>
                 <h1>Select Team</h1><br></br>
-                {battlePokemon[0].id !== undefined ? <div className="battle-button"><button onClick={handleBattleClick}>BATTLE!</button></div> : null}
+                {battlePokemon[0].id !== undefined ? <div className="battle-button"><button disabled={!(pokemon.length > 0)} onClick={handleBattleClick}>BATTLE!</button></div> : null}
                 <div className="battle-select-pokemon">
                     {battlePokemon.map(p => {
                         if (p.pokemon && p.pokemon.front_image) {
@@ -104,6 +97,7 @@ const BattleSelectContainer = () => {
                                 <ul className="user-pokemon">
                                     <li><button id={p.id} onClick={handleClick}>Select</button><br></br></li>
                                     <UserPokemon
+                                        key={makeid(20)}
                                         name={p.pokemon.name}
                                         id={p.id}
                                         frontImage={p.pokemon.front_image}
