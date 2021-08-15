@@ -17,3 +17,12 @@ export const setUserMove = (move) => {
     })
     }
 }
+
+export const addTokensToUser = (coins) => {
+    return(dispatch) => {
+        dispatch({
+            type: "ADD_TOKENS",
+            payload: coins
+        })
+    }
+}
