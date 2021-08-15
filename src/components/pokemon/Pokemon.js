@@ -38,7 +38,7 @@ const Pokemon = (props) => {
 
     const handlePurchase = () => {
         dispatch(addPokemonToUser(user.id, props.pokemon.id, localMoves, user.tokens, props.pokemon.tier))
-        
+
         setLocalMoves([])
       }
 
@@ -158,7 +158,7 @@ const Pokemon = (props) => {
                     </div>
                     </Typography>
                     <Typography gutterBottom>
-{console.log(userPokemon.includes((p) => props.pokemon.id == p.pokemon.id))}
+                      {(userPokemon.includes((p) => props.pokemon.id == p.pokemon.id))}
                     </Typography>
                 </DialogContent>
                 <DialogActions>
