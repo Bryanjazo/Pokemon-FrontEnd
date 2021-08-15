@@ -105,8 +105,13 @@ div.selected-ai-pokemon img {
 }
 
 div.selected-ai-pokemon {
-    bottom: 850px;
-    left: 225px;
+    bottom: 790px;
+    left: 300px;
     position: relative;
     text-align: center;
+}
+
+.move-buttons-group {
+    margin-right: 300px;
+    margin-top: -60px;
 }

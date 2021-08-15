@@ -21,7 +21,7 @@ const BattlePage = (props) => {
 
     useEffect(() => {
         gamePlay()
-    }, [turnCount]);
+    }, [turnCount, aITeam]);
 
     const checkTurn = () =>{
         if (turnCount % 2 === 0){
@@ -35,52 +35,81 @@ const BattlePage = (props) => {
         let winner = ""
         let gameEnd = false
         while (gameEnd === false){
-            if (aITeam.length === 1 && selectedAIPokemon.hp <= 0){
+            if (!aITeam[0].name && selectedAIPokemon.hp <= 0){
                 gameEnd = true
                 winner = "player"
+                console.log("You WON!")
             }
             if (userBattleTeam.length === 1 && selectedPokemon.hp <= 0){
                 gameEnd = true
                 winner = "AI"
+                console.log("You LOSE.")
             }
 
-            if (selectedPokemon.pokemon.hp <= 0){
-                setUserBattleTeam(userBattleTeam.filter((p) => p.id !== selectedPokemon.pokemon.id))
-                setSelectedPokemon(userBattleTeam[0])
-            }
+            // if (selectedPokemon.pokemon.hp <= 0){
+            //     setUserBattleTeam(userBattleTeam.filter((p) => p.id !== selectedPokemon.pokemon.id))
+            //     setSelectedPokemon(userBattleTeam[0])
+            // }
 
-            if (selectedAIPokemon.hp <= 0){
-                setAITeam(aITeam.filter((p) => p.id !== selectedAIPokemon.id))
-            }
+            // if (selectedAIPokemon.hp <= 0){
+            //     setAITeam(aITeam.filter((p) => p.id !== selectedAIPokemon.id))
+            //     setSelectedAIPokemon(aITeam.filter((p) => p.id !== selectedAIPokemon.id)[0])
+            // }
             let pokemon = checkTurn()
 
             if(turnCount % 2 == 0){
-                if(selectedPokemon.pokemon.hp <= 0){
-                    setUserBattleTeam(userBattleTeam.filter((p) => p.id !== selectedPokemon.pokemon.id))
-                    setSelectedPokemon(userBattleTeam[0])
-                    
-                }
+                // if(selectedPokemon.pokemon.hp <= 0){
+                //     setUserBattleTeam(userBattleTeam.filter((p) => p.id !== selectedPokemon.pokemon.id))
+                //     setSelectedPokemon(userBattleTeam[0]) 
+                // }
 
                 if(selectedUserMove != ""){
                     let statChange = selectedAIPokemon.hp - selectedUserMove.power
       
-                    setSelectedAIPokemon({...selectedAIPokemon, hp: statChange})
+                    selectedAIPokemon.hp = statChange
+                    // setSelectedAIPokemon({...selectedAIPokemon, hp: statChange})
                     dispatch(setUserMove(""))
+                    if(selectedAIPokemon.hp <= 0 && aITeam.length > 1){
+                
+                    let newAITeam = aITeam.filter((p) => p.id !== selectedAIPokemon.id)
+                    setAITeam(newAITeam)
+                    if (newAITeam[0].name) {
+                        setSelectedAIPokemon(aITeam.filter((p) => p.id !== selectedAIPokemon.id)[0])
+                    }
+                } 
                 }
+                 
+                // if(selectedPokemon.pokemon.hp <= 0){
+                //     setUserBattleTeam(userBattleTeam.filter((p) => p.id !== selectedPokemon.pokemon.id))
+                //     setSelectedPokemon(userBattleTeam[0]) 
+                // }
             } else if(turnCount % 2 != 0) {
-                if(selectedAIPokemon.hp <= 0 && aITeam.length > 1){
-                    {debugger}
-                    setAITeam(aITeam.filter((p) => p.id !== selectedAIPokemon.id))
-                    setSelectedAIPokemon(aITeam[0])
+                // if(selectedAIPokemon.hp <= 0 && aITeam.length > 1){
+                //     {debugger}
+                //     let newAITeam = aITeam.filter((p) => p.id !== selectedAIPokemon.id)
+                //     setAITeam(newAITeam)
+                //     setSelectedAIPokemon(aITeam.filter((p) => p.id !== selectedAIPokemon.id)[0])
         
-                }   
+                // }   
     
                 let randomNum = Math.floor((Math.random() * parseInt(pokemon.moves.length))) 
                 let chosenMove = selectedAIPokemon.moves[randomNum]
                 let statChange = selectedPokemon.pokemon.hp - chosenMove.power
-                setSelectedPokemon({...selectedPokemon, pokemon: {...selectedPokemon.pokemon, hp: statChange}})
+                selectedPokemon.pokemon.hp = statChange
+                
+                // setSelectedPokemon({...selectedPokemon, pokemon: {...selectedPokemon.pokemon, hp: statChange}})
                 dispatch(incrementCounter(turnCount))
 
+                if(selectedPokemon.pokemon.hp <= 0){
+                    debugger
+                    let newUserTeam = userBattleTeam.filter((p) => p.pokemon_id !== selectedPokemon.pokemon.id)
+                    setUserBattleTeam(newUserTeam)
+                    if (newUserTeam[0].pokemon) {
+                        debugger
+                        setSelectedPokemon(newUserTeam[0])
+                    }
+                    // setSelectedPokemon(userBattleTeam[0]) 
+                }
             }
             
             gameEnd = true
@@ -129,8 +158,8 @@ const BattlePage = (props) => {
             </div> 
         </div>
         {selectedPokemon.pokemon ? <MovesAlert key={() => makeid(20)} selectedPokemon={selectedPokemon}/> : null}
+        
         {selectedPokemon.pokemon ? <OpponentSelectedPokemon selectedAIPokemon={selectedAIPokemon}/> : null}
-
         </>
     );
 }

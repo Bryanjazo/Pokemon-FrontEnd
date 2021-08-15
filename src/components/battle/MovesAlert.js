@@ -48,14 +48,16 @@ const MovesAlert = (props) => {
     return (
         <div>
         <div className="selected-pokemon"><img src={props.selectedPokemon.pokemon.back_image} onClick={handleClick}></img>
+          <p className="move-buttons-group">
           {props.selectedPokemon.active_moves.map(m => {
             if(turnCount%2 === 0){
             return(
+              
               <span className="moveButtons">
                 <button onClick={() => (handleBattleClick(m))}>{m.name}</button>
               </span>
             )}
-          })}
+          })}</p>
           </div>
         </div>
     );
