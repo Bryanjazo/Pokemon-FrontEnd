@@ -2,6 +2,7 @@ import {  InputLabel, makeStyles, MenuItem, Radio, RadioGroup, Select, TextField
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeid } from '../../actions/authentication';
 import { assignMoves, getPokemon } from '../../actions/pokemon';
 import { addPokemonToUser, getUserPokemon } from '../../actions/userpokemon';
 import Pokemon from './Pokemon';
@@ -94,7 +95,7 @@ return (
         filteredPokemon.map(p => {
         return <Pokemon
             pokemon = {p}
-            key = {p.id}
+            key = {makeid(20)}
 
         />
     })

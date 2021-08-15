@@ -1,8 +1,9 @@
 const initialState = {
-    pokemon: []
-}
+  pokemon: [],
+};
 
 const pokemonReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case "GET_POKEMON":
             return {
@@ -20,6 +21,5 @@ const pokemonReducer = (state = initialState, action) => {
     }
 }
 
+export default pokemonReducer;
 
-
-export default pokemonReducer
