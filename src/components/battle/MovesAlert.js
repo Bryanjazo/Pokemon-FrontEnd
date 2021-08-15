@@ -40,7 +40,7 @@ const MovesAlert = (props) => {
           {props.selectedPokemon.active_moves.map(m => {
             return(
               <span className="moveButtons">
-                <button>{m}</button>
+                <button>{m.name}</button>
               </span>
             )
           })}
