@@ -3,11 +3,12 @@ import BattleMenu from './BattleMenu';
 import MovesAlert from './MovesAlert';
 import './battle.css'
 import OpponentSelectedPokemon from './OpponentSelectedPokemon';
-import { incrementCounter, setUserMove } from '../../actions/battle';
+import { addTokensToUser, incrementCounter, setUserMove } from '../../actions/battle';
 import { useDispatch, useSelector } from 'react-redux';
 import { Place } from '@material-ui/icons';
 import { makeid } from '../../actions/authentication';
 import {SimpleModal} from '../SimpleModal';
+import { Redirect, useHistory } from 'react-router-dom';
 
 const BattlePage = (props) => {
 
@@ -16,12 +17,20 @@ const BattlePage = (props) => {
     const [aITeam, setAITeam] = useState(props.aITeam)
     const [selectedPokemon, setSelectedPokemon] = useState(userBattleTeam[0])
     const [selectedAIPokemon, setSelectedAIPokemon] = useState(aITeam[0])
+    const [AIWin, setAIWin] = useState(false);
+    const [userWin, setUserWin] = useState(false)
     let turnCount = useSelector(state => state.battleReducer.turnCount)
     const dispatch = useDispatch()
     let selectedUserMove = useSelector(state => state.battleReducer.selectedUserMove)
+    let history = useHistory()
+    let user = useSelector(state => state.userReducer.details)
 
     useEffect(() => {
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> origin/main
     }, [turnCount, aITeam]);
 
 
@@ -33,14 +42,14 @@ const BattlePage = (props) => {
         }
     }
 
-    const coinMultiplier = () => {
+    const coinMultiplier = (array) => {
         let coinTotal = 0
-        for (let i in props.winCheck){
-            if(props.winCheck[i].tier === 1) coinTotal += 10
-            if(props.winCheck[i].tier === 2) coinTotal += 20
-            if(props.winCheck[i].tier === 3) coinTotal += 30
+        for (let i in array){
+            if(array[i].tier === 1) coinTotal += 10
+            if(array[i].tier === 2) coinTotal += 20
+            if(array[i].tier === 3) coinTotal += 30
         }
-
+        return coinTotal
     }
 
     const gamePlay = () => {
@@ -54,6 +63,7 @@ const BattlePage = (props) => {
             //     setAITeam(aITeam.filter((p) => p.id !== selectedAIPokemon.id))
             //     setSelectedAIPokemon(aITeam.filter((p) => p.id !== selectedAIPokemon.id)[0])
             // }
+           
             let pokemon = checkTurn()
             if(turnCount % 2 == 0){
                 // if(selectedPokemon.pokemon.hp <= 0){
@@ -70,12 +80,17 @@ const BattlePage = (props) => {
                     setAITeam(newAITeam)
                     if (newAITeam[0].name) {
                         setSelectedAIPokemon(aITeam.filter((p) => p.id !== selectedAIPokemon.id)[0])
-                    } else {
-                            gameEnd = true
+                    } else if (AIWin !== true) {
+                        
+                            setUserWin(true)
                             winner = "player"
                             let outcome = "win"
-                            let coins = coinMultiplier()
-                            console.log("You WON!")
+                            let coins = coinMultiplier(winCheck)
+                            let totalCoins = coins + user.tokens
+                            dispatch(addTokensToUser(totalCoins))
+                            console.log("You win")
+                            alert("You won")
+                            window.location.reload('/Home')
                     }
                 }
                 }
@@ -101,14 +116,22 @@ const BattlePage = (props) => {
                     setUserBattleTeam(newUserTeam)
                     if (newUserTeam[0].pokemon) {
                         setSelectedPokemon(newUserTeam[0])
-                    } else {
-                            gameEnd = true
+                    } else if (userWin !== true) {
+                        {debugger}
+                            setAIWin(true)
                             winner = "AI"
                             console.log("You LOSE.")
+                            window.location.reload('/Home')
+                                alert("You lost")
+                            
                     }
                     // setSelectedPokemon(userBattleTeam[0])
                 }
             }
+        
+    
+            
+
     }
 
 

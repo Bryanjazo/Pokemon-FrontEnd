@@ -29,7 +29,7 @@ function SignIn() {
      .then(resp => resp.json())
      .then(function(data){
        console.log(data)
-       if(data.uid){
+       if(data && data.uid){
          // console.log(data.jwt, "tokennnn")
           localStorage.setItem("token", data.uid)
             console.log(localStorage.token)
