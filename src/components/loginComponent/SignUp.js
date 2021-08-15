@@ -62,15 +62,14 @@ function SignUp() {
                             <div class="col-md-6">
                                 <div class="card">
                                     <form onSubmit={handleLogin} class="box">
-                                        <h1>Login</h1>
-                                        <p class="text-muted"> Please enter your login and password!</p>
+                                        <h1>Sign Up</h1>
                                         <input type="text" name="UserName" value={UserName} placeholder="User Name" onChange={(e) => setUserName(e.target.value)}/>
                                         <input type="text" name="Email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
                                         <input type="password" name="" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                                         <a class="forgot text-muted" href="#">Forgot password?</a><br></br>
                                         <a class="forgot text-muted" href="/Login">Already Have An Account?</a>
 
-                                        <input type="submit" name="" value="Login"/>
+                                        <input type="submit" name="" value="Sign Up"/>
                                             {<div class="col-md-12">
                                                 <ul class="social-network social-circle">
                                                     <li><a href="#" class="icoFacebook" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>

@@ -21,13 +21,9 @@ const BattlePage = (props) => {
     let selectedUserMove = useSelector(state => state.battleReducer.selectedUserMove)
 
     useEffect(() => {
-<<<<<<< HEAD
-        
-    }, [turnCount, aITeam]);
-=======
         gamePlay()
-    }, [turnCount]);
->>>>>>> origin/main
+    }, [turnCount, aITeam]);
+
 
     const checkTurn = () =>{
         if (turnCount % 2 === 0){
@@ -114,8 +110,8 @@ const BattlePage = (props) => {
                 }
             }
     }
-    
-  
+
+
 
     const handleImageClick = (event) => {
         event.preventDefault()
@@ -128,12 +124,12 @@ const BattlePage = (props) => {
         <div className="battle-menus">
             <div className="user-battle-menu">
                 {<BattleMenu userTeam={props.userTeam} selectedPokemon={selectedPokemon.pokemon}/>}
-            </div>  
+            </div>
             <div className="ai-battle-menu">
                 {<BattleMenu selectedPokemon={selectedAIPokemon}/>}
             </div>
-        </div> 
-        <div className="teams">    
+        </div>
+        <div className="teams">
             <div className="user-battle-team">
             <h3>My Team</h3>
                 {props.userBattleTeam.map((p, index) => {
@@ -155,10 +151,10 @@ const BattlePage = (props) => {
                     }
                 )}
             </div>
-            </div> 
+            </div>
         </div>
         {selectedPokemon.pokemon ? <MovesAlert key={() => makeid(20)} selectedPokemon={selectedPokemon}/> : null}
-        
+
         {selectedPokemon.pokemon ? <OpponentSelectedPokemon selectedAIPokemon={selectedAIPokemon}/> : null}
         {gamePlay()}
         </>

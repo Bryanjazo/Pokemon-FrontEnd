@@ -33,7 +33,7 @@ console.log(authenthicated)
     if(userOauth){
         dispatch(fetchOauth(userOauth))
     }else{
-        alert('Please Log In')  
+        alert('Please Log In')
     }
   }, []);
 
@@ -44,7 +44,7 @@ console.log(authenthicated)
       <Switch>
         <Route path='/Login' component={SignIn}/>
         <Route path="/SignUp" component={SignUp}/>
-          <Route path={authenthicated === true ? '/Home' : '/'}>
+          <Route path={authenthicated ? '/Home' : '/'}>
           <NavBar />
           <Home />
           </Route>
