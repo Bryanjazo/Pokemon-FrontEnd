@@ -86,6 +86,7 @@ const BattlePage = (props) => {
                             let coins = coinMultiplier()
                             console.log("You WON!")
                             
+                            
                     }
                 } 
                 }
