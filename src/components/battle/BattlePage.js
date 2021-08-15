@@ -101,11 +101,9 @@ const BattlePage = (props) => {
                 dispatch(incrementCounter(turnCount))
 
                 if(selectedPokemon.pokemon.hp <= 0){
-                    debugger
                     let newUserTeam = userBattleTeam.filter((p) => p.pokemon_id !== selectedPokemon.pokemon.id)
                     setUserBattleTeam(newUserTeam)
                     if (newUserTeam[0].pokemon) {
-                        debugger
                         setSelectedPokemon(newUserTeam[0])
                     }
                     // setSelectedPokemon(userBattleTeam[0]) 
