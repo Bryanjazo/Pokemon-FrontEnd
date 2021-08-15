@@ -10,6 +10,7 @@ function SignUp() {
     const history = useHistory();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [UserName, setUserName] = useState('')
 
   const handleLogin = (e) => {
       e.preventDefault()
@@ -22,6 +23,7 @@ function SignUp() {
          Accept: 'application/json',
        },
        body: JSON.stringify({
+          username: UserName,
            email: email,
            password: password
         })
@@ -62,6 +64,7 @@ function SignUp() {
                                     <form onSubmit={handleLogin} class="box">
                                         <h1>Login</h1>
                                         <p class="text-muted"> Please enter your login and password!</p>
+                                        <input type="text" name="UserName" value={UserName} placeholder="User Name" onChange={(e) => setUserName(e.target.value)}/>
                                         <input type="text" name="Email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
                                         <input type="password" name="" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                                         <a class="forgot text-muted" href="#">Forgot password?</a><br></br>
