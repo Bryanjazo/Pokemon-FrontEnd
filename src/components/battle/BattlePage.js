@@ -21,13 +21,9 @@ const BattlePage = (props) => {
     let selectedUserMove = useSelector(state => state.battleReducer.selectedUserMove)
 
     useEffect(() => {
-<<<<<<< HEAD
+
         
     }, [turnCount, aITeam]);
-=======
-        gamePlay()
-    }, [turnCount]);
->>>>>>> origin/main
 
     const checkTurn = () =>{
         if (turnCount % 2 === 0){
