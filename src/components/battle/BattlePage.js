@@ -21,7 +21,7 @@ const BattlePage = (props) => {
     let selectedUserMove = useSelector(state => state.battleReducer.selectedUserMove)
 
     useEffect(() => {
-        gamePlay()
+
     }, [turnCount, aITeam]);
 
 

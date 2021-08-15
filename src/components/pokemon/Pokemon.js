@@ -158,7 +158,7 @@ const Pokemon = (props) => {
                     </div>
                     </Typography>
                     <Typography gutterBottom>
-                      {(userPokemon.includes((p) => props.pokemon.id == p.pokemon.id))}
+                      {userPokemon ? userPokemon.includes((p) => props.pokemon.id == p.pokemon.id) : null}
                     </Typography>
                 </DialogContent>
                 <DialogActions>

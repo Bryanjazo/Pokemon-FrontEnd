@@ -19,7 +19,7 @@ export default function Chart() {
   console.log(user)
   return (
     <React.Fragment>
-      <Title>Welcome {user.userName},</Title>
+      <Title>Welcome {user.username},</Title>
       <ResponsiveContainer>
       <Link className="Link" to="/pokemons">
       <Title>Click Here to start playing</Title>
