@@ -23,7 +23,7 @@ function App() {
   const current_user = user.uid
   const dispatch = useDispatch()
   const userOauth = localStorage.token
-  const [authenthicated, setAuthenthicated] = useState(false)
+  const [authenthicated, setAuthenthicated] = useState(true)
 
 
 console.log(authenthicated)
@@ -32,13 +32,8 @@ console.log(authenthicated)
     dispatch(getPokemon())
     if(userOauth){
         dispatch(fetchOauth(userOauth))
-        setAuthenthicated(true)
     }else{
-      debugger
-      <Redirect to="/"></Redirect>
-
-
-
+        alert('Please Log In')
     }
   }, []);
 
@@ -49,7 +44,7 @@ console.log(authenthicated)
       <Switch>
         <Route path='/Login' component={SignIn}/>
         <Route path="/SignUp" component={SignUp}/>
-          <Route path={authenthicated === true ? '/Home' : '/'}>
+          <Route path={authenthicated ? '/Home' : '/'}>
           <NavBar />
           <Home />
           </Route>

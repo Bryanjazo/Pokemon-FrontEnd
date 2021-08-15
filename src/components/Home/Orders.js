@@ -44,6 +44,7 @@ export default function Orders() {
   },[])
 
 console.log(allUsers)
+
   return (
     <React.Fragment>
       <Title>Users Playing</Title>
@@ -51,28 +52,22 @@ console.log(allUsers)
         <TableHead>
           <TableRow>
 
-            <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>User Name</TableCell>
+            <TableCell>Wins</TableCell>
+            <TableCell align="right">Win Streak</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {allUsers.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+              <TableCell>{row.username}</TableCell>
+              <TableCell>{row.wins}</TableCell>
+              <TableCell align="right">{row.win_streak}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
       </div>
     </React.Fragment>
   );
