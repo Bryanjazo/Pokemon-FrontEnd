@@ -40,7 +40,7 @@ const BattlePage = (props) => {
                 winner = "player"
                 console.log("You WON!")
             }
-            if (userBattleTeam.length === 1 && selectedPokemon.hp <= 0){
+            if (!userBattleTeam[0].pokemon && selectedPokemon.pokemon.hp <= 0){
                 gameEnd = true
                 winner = "AI"
                 console.log("You LOSE.")
