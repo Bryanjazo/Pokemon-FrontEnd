@@ -22,7 +22,7 @@ export default function Deposits() {
   const newDate = date.getDate()
   let month = date.getMonth() + 1;
 let year = date.getFullYear();
-  console.log(user)
+
   return (
     <React.Fragment>
       <Title>Token Balance</Title>

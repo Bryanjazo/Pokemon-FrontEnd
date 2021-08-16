@@ -16,12 +16,11 @@ function createData(time, amount) {
 export default function Chart() {
   const theme = useTheme();
   const user = useSelector(state => state.userReducer.details)
-  console.log(user)
   return (
     <React.Fragment>
-      <Title>Welcome {user.userName},</Title>
+      <Title>Welcome {user.username},</Title>
       <ResponsiveContainer>
-      <Link className="Link" to="/pokemons">
+      <Link className="Link" to="/pokemon">
       <Title>Click Here to start playing</Title>
       </Link>
       </ResponsiveContainer>

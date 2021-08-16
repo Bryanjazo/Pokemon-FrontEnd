@@ -43,8 +43,8 @@ export default function Orders() {
     })
   },[])
 
-console.log(allUsers)
 
+console.log(allUsers)
   return (
     <React.Fragment>
       <Title>Users Playing</Title>
