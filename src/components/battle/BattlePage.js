@@ -118,7 +118,7 @@ const BattlePage = (props) => {
                     if (newUserTeam[0].pokemon) {
                         setSelectedPokemon(newUserTeam[0])
                     } else if (userWin !== true) {
-                        {debugger}
+          
                             setAIWin(true)
                             winner = "AI"
                             // dispatch(userLoses(uid, win_streak = 0))
