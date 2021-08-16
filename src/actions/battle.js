@@ -18,11 +18,25 @@ export const setUserMove = (move) => {
     }
 }
 
-export const addTokensToUser = (coins) => {
-    return(dispatch) => {
-        dispatch({
-            type: "ADD_TOKENS",
-            payload: coins
+export const addTokensToUser = (uid, coins) => {
+    
+    return (dispatch) => {
+        fetch(`http://localHost:8080/api/v1/users/${uid}`, {
+          method: 'PATCH',
+          headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          },
+        body: JSON.stringify({
+          tokens: coins
+          })
         })
-    }
+        .then(resp => resp.json())
+        .then(function(data){
+            dispatch({
+              type: 'GET_USER_DETAILS',
+              payload: data
+            })
+          })
+        }
 }

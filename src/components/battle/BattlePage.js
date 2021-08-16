@@ -86,8 +86,8 @@ const BattlePage = (props) => {
                             let outcome = "win"
                             let coins = coinMultiplier(winCheck)
                             let totalCoins = coins + user.tokens
-                            dispatch(addTokensToUser(totalCoins))
-                            dispatch(userWins(uid, wins + 1, win_streak + 1))
+                            dispatch(addTokensToUser(user.id, totalCoins))
+                            // dispatch(userWins(uid, wins + 1, win_streak + 1))
 
                             console.log("You win")
                             alert("You won")
@@ -118,10 +118,10 @@ const BattlePage = (props) => {
                     if (newUserTeam[0].pokemon) {
                         setSelectedPokemon(newUserTeam[0])
                     } else if (userWin !== true) {
-                        {debugger}
+          
                             setAIWin(true)
                             winner = "AI"
-                            dispatch(userLoses(uid, win_streak = 0))
+                            // dispatch(userLoses(uid, win_streak = 0))
                             console.log("You LOSE.")
                             window.location.reload('/Home')
                                 alert("You lost")
