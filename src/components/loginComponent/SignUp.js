@@ -40,6 +40,10 @@ function SignUp() {
             type: "GET_USER_DETAILS",
             payload: data
           })
+          dispatch({
+            type: "SET_USER_TOKEN",
+            payload: localStorage.token
+          })
           // settingUserSignUp()
           history.push('/Home')
        }else{

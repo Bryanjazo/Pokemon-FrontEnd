@@ -33,31 +33,30 @@ function App() {
     if(userOauth){
         dispatch(fetchOauth(userOauth))
     }else{
-        alert('Please Log In')
+        setAuthenthicated(false)
     }
   }, []);
 
 
-
+console.log(user, 'kjk')
   return (
     <Router>
+      <NavBar/>
       <Switch>
         <Route path='/Login' component={SignIn}/>
         <Route path="/SignUp" component={SignUp}/>
-          <Route path={authenthicated ? '/Home' : '/'}>
-          <NavBar />
-          <Home />
+          <Route path='/Home'>
+          {userOauth === '' ? <Redirect to="Login"></Redirect> : <Home />}
           </Route>
-        <Route exact path={authenthicated ? '/pokemon' : '/'}>
-         <NavBar/>
+        <Route exact path={userOauth !== '' ? '/pokemon' : '/'}>
+
          <PokemonsContainer />
         </Route>
-        <Route exact path={authenthicated ? '/battle' : '/'} >
-          <NavBar/>
+        <Route exact path={userOauth !== '' ? '/battle' : '/'} >
           <BattleSelectContainer />
         </Route>
       <Route exact path="/">
-        {authenthicated === true ?  <Redirect to="/Home" /> :  <Redirect to="/Login" />}
+        {userOauth !== '' ?  <Redirect to="/Home" /> :  <Redirect to="/Login" />}
       </Route>
       </Switch>
     </Router>
