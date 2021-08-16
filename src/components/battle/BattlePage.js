@@ -9,7 +9,7 @@ import { Place } from '@material-ui/icons';
 import { makeid } from '../../actions/authentication';
 import {SimpleModal} from '../SimpleModal';
 import { Redirect, useHistory } from 'react-router-dom';
-
+import {userWins, userLoses} from '../../actions/UserWins.js'
 const BattlePage = (props) => {
 
     const [winCheck, setWinCheck] = useState(props.aITeam)
@@ -24,13 +24,11 @@ const BattlePage = (props) => {
     let selectedUserMove = useSelector(state => state.battleReducer.selectedUserMove)
     let history = useHistory()
     let user = useSelector(state => state.userReducer.details)
-
+    let wins = user.wins
+    let uid = user.uid
+    let win_streak = user.win_streak
     useEffect(() => {
 
-<<<<<<< HEAD
-=======
-        
->>>>>>> origin/main
     }, [turnCount, aITeam]);
 
 
@@ -41,7 +39,7 @@ const BattlePage = (props) => {
             return selectedAIPokemon
         }
     }
-
+    console.log(uid,wins, win_streak)
     const coinMultiplier = (array) => {
         let coinTotal = 0
         for (let i in array){
@@ -51,6 +49,7 @@ const BattlePage = (props) => {
         }
         return coinTotal
     }
+    console.log(user)
 
     const gamePlay = () => {
         let winner = ""
@@ -63,7 +62,7 @@ const BattlePage = (props) => {
             //     setAITeam(aITeam.filter((p) => p.id !== selectedAIPokemon.id))
             //     setSelectedAIPokemon(aITeam.filter((p) => p.id !== selectedAIPokemon.id)[0])
             // }
-           
+
             let pokemon = checkTurn()
             if(turnCount % 2 == 0){
                 // if(selectedPokemon.pokemon.hp <= 0){
@@ -81,13 +80,15 @@ const BattlePage = (props) => {
                     if (newAITeam[0].name) {
                         setSelectedAIPokemon(aITeam.filter((p) => p.id !== selectedAIPokemon.id)[0])
                     } else if (AIWin !== true) {
-                        
+
                             setUserWin(true)
                             winner = "player"
                             let outcome = "win"
                             let coins = coinMultiplier(winCheck)
                             let totalCoins = coins + user.tokens
                             dispatch(addTokensToUser(totalCoins))
+                            dispatch(userWins(uid, wins + 1, win_streak + 1))
+
                             console.log("You win")
                             alert("You won")
                             window.location.reload('/Home')
@@ -120,17 +121,18 @@ const BattlePage = (props) => {
                         {debugger}
                             setAIWin(true)
                             winner = "AI"
+                            dispatch(userLoses(uid, win_streak = 0))
                             console.log("You LOSE.")
                             window.location.reload('/Home')
                                 alert("You lost")
-                            
+
                     }
                     // setSelectedPokemon(userBattleTeam[0])
                 }
             }
-        
-    
-            
+
+
+
 
     }
 

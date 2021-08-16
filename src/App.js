@@ -26,7 +26,7 @@ function App() {
   const [authenthicated, setAuthenthicated] = useState(true)
 
 
-console.log(authenthicated)
+
   useEffect(() => {
     dispatch(getMoves())
     dispatch(getPokemon())
@@ -38,7 +38,7 @@ console.log(authenthicated)
   }, []);
 
 
-  console.log("User authenthication:", user)
+
   return (
     <Router>
       <Switch>
