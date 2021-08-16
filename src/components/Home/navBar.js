@@ -10,7 +10,9 @@ function NavBar(){
   const history = useHistory()
   const [clicked, setClicked] = useState(false)
   const dispatch = useDispatch()
+
   let user = useSelector(state => state.userReducer.details)
+  let current_user = useSelector(state => state.userReducer.current_user)
   const handleClick = (e) =>{
     e.preventDefault()
     setClicked(!clicked)
@@ -19,10 +21,10 @@ function NavBar(){
       dispatch(LogOut())
       history.replace('/Login')
     }
-
+    console.log(current_user, 'lllll')
   return(
   <nav className="NavbarItems">
-    <Link className="cla" to="/">
+    <Link className="cla" to={current_user !== '' ? '/' : '/Login'}>
     <h1  className="NavbarLogo changeTitle">Pokemon<i class="fab fa-fantasy-flight-games"></i></h1>
     </Link>
       <div className="MenuItmem" onClick={handleClick}>
@@ -32,18 +34,18 @@ function NavBar(){
 
 
         <li >
-        <Link className="nav-links" to="/Home">
+        <Link className="nav-links" to={current_user === '' ? '/Login' : '/Home'}>
             Home
         </Link>
 
-          {user !== null ? <Link className="nav-links" to="/Pokemon">Pokemon</Link> : ''}
-          <Link className="nav-links" to="/Battle">
-            Battle
-          </Link>
+          {current_user !== '' ? <Link className="nav-links" to="/Pokemon">Pokemon</Link> : ''}
+
+          {current_user !== '' ?<Link className="nav-links" to="/Battle">Battle</Link> : ''}
+
         </li>
     </ul>
     <Link to={!user && '/Login' }>
-    {user === '' ?  <Button>Login</Button> : <Button onClick={handleLogOut}>Sign Out</Button> }
+    {current_user === '' ?  <Button>Login</Button> : <Button onClick={handleLogOut}>Sign Out</Button> }
     </Link>
   </nav>
   )

@@ -1,5 +1,6 @@
 const userDetails = {
   details: [],
+  current_user: localStorage.token
 }
 
 
@@ -23,6 +24,17 @@ const userReducer = (state = userDetails, action) =>{
             ...state,
             userPokemon: action.payload
           }
+
+          case "SET_USER_TOKEN":
+            return {
+              ...state,
+              current_user: action.payload
+            }
+            case "CLEAR_USER_TOKEN":
+              return {
+                ...state,
+                current_user: ''
+              }
 
         case "ADD_USER_POKEMON":
           return {
