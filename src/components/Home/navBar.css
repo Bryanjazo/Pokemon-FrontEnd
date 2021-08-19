@@ -31,7 +31,7 @@
 .nav-menu{
   display: grid;
   grid-template-columns: repeat(5, auto);
-  gird-gap: 10px;
+  grid-gap: 10px;
   list-style: none;
   text-align: center;
   width: 70vw;
@@ -141,4 +141,8 @@
   Button{
     display: none;
   }
+}
+
+.nav-tokens {
+  color: white
 }
