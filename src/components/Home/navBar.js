@@ -3,6 +3,7 @@ import {LogOut} from '../../actions/authentication.js'
 import {useDispatch,useSelector} from 'react-redux'
 import {useHistory,Link} from 'react-router-dom'
 import {Button} from './Button.js'
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 // import {clearAnimeHome, setUser} from '../Redux/reducerRedux.js'
 import './navBar.css'
 
@@ -32,17 +33,17 @@ function NavBar(){
       </div>
     <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
 
-
         <li >
         <Link className="nav-links" to={current_user === '' ? '/Login' : '/Home'}>
             Home
         </Link>
-
+      
           {current_user !== '' ? <Link className="nav-links" to="/Pokemon">Pokemon</Link> : ''}
 
           {current_user !== '' ?<Link className="nav-links" to="/Battle">Battle</Link> : ''}
-
+          
         </li>
+        {current_user !== '' ? <li className = "nav-tokens"> Tokens: {user.tokens}</li> : ''}
     </ul>
     <Link to={!user && '/Login' }>
     {current_user === '' ?  <Button>Login</Button> : <Button onClick={handleLogOut}>Sign Out</Button> }
